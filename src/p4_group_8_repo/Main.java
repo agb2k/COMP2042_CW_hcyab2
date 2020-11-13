@@ -3,11 +3,16 @@ package p4_group_8_repo;
 import java.io.File;
 import java.util.List;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
@@ -18,25 +23,40 @@ public class Main extends Application {
 	AnimationTimer timer;
 	MyStage background;
 	Animal animal;
+	Scene scene1, scene2;
 	public static void main(String[] args) {
 		launch(args);
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-	    background = new MyStage();
-	    Scene scene  = new Scene(background,600,800);
-	    
+
+//		Beginning of menu implementation
+		Label label1 = new Label("Welcome to Frogger");
+		Button button1 = new Button("Start Game");
+		Button button2 = new Button("Info");
+		button1.setOnAction(e -> primaryStage.setScene(scene2));
+
+		VBox layout1 = new VBox(20);
+		layout1.getChildren().addAll(label1, button1, button2);
+		scene1 = new Scene(layout1, 600, 500);
+
+		Button button3 = new Button("Game goes here");
+		button3.setOnAction(e -> primaryStage.setScene(scene1));
+
+		background = new MyStage();
+		scene2  = new Scene(background,600,800);
+
 		//Obstacle obstacle = new Obstacle("file:src/p4_group_8_repo/truck1Right.png", 25, 25, 3);
 		//Obstacle obstacle1 = new Obstacle("file:src/p4_group_8_repo/truck2Right.png", 100, 100,2 );
 		//Obstacle obstacle2 = new Obstacle("file:src/p4_group_8_repo/truck1Right.png",0,  150, 1);
 
 
-		//Changed the source of the image so the backgroud image appears
+		//Changed the source of the image so the background image appears
 		BackgroundImage froggerback = new BackgroundImage("file:src/p4_group_8_repo/iKogsKW.png");
-	    
+
 		background.add(froggerback);
-		
+
 		background.add(new Log("file:src/p4_group_8_repo/log3.png", 150, 0, 166, 0.75));
 		background.add(new Log("file:src/p4_group_8_repo/log3.png", 150, 220, 166, 0.75));
 		background.add(new Log("file:src/p4_group_8_repo/log3.png", 150, 440, 166, 0.75));
@@ -48,7 +68,7 @@ public class Main extends Application {
 		background.add(new Log("file:src/p4_group_8_repo/log3.png", 150, 270, 329, 0.75));
 		background.add(new Log("file:src/p4_group_8_repo/log3.png", 150, 490, 329, 0.75));
 		//background.add(new Log("file:src/p4_group_8_repo/log3.png", 150, 570, 329, 0.75));
-		
+
 		background.add(new Turtle(500, 376, -1, 130, 130));
 		background.add(new Turtle(300, 376, -1, 130, 130));
 		background.add(new WetTurtle(700, 376, -1, 130, 130));
@@ -97,9 +117,16 @@ public class Main extends Application {
 		//background.add(obstacle1);
 		//background.add(obstacle2);
 		background.start();
-		primaryStage.setScene(scene);
+		primaryStage.setScene(scene2);
 		primaryStage.show();
-		start();  
+		start();
+
+		primaryStage.setScene(scene1);
+		primaryStage.setTitle("Frogger");
+		primaryStage.show();
+//		End of menu implementation
+
+
 	}
 	public void createTimer() {
         timer = new AnimationTimer() {
@@ -131,7 +158,7 @@ public class Main extends Application {
     public void stop() {
         timer.stop();
     }
-    
+
     public void setNumber(int n) {
     	int shift = 0;
     	while (n > 0) {
