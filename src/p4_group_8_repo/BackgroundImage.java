@@ -10,6 +10,9 @@ public class BackgroundImage extends Actor{
 		
 	}
 //	Changed the zoom settings
+	/**
+	 * @param imageLink Background image
+	 */
 	public BackgroundImage(String imageLink) {
 		setImage(new Image(imageLink, 700, 857, true, true));
 		

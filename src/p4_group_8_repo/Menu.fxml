@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p4_group_8_repo.MenuController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0">
+         <image>
+            <Image url="@resources/smiiling-big-eyed-green-frog-clipart-6926.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="startButton" contentDisplay="CENTER" layoutX="274.0" layoutY="174.0" mnemonicParsing="false" onAction="#startButtonClicked" text="Start" />
+      <Button fx:id="infoButton" contentDisplay="CENTER" layoutX="276.0" layoutY="216.0" mnemonicParsing="false" onAction="#infoButtonClicked" text="Info" textAlignment="CENTER" />
+      <Button fx:id="highScoreButton" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="257.0" mnemonicParsing="false" onAction="#highScoreButtonClicked" text="Highscore" />
+      <Label layoutX="90.0" layoutY="74.0" text="Welcome to Frogger!" textAlignment="CENTER">
+         <font>
+            <Font name="Gadugi Bold" size="41.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
