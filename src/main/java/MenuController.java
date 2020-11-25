@@ -1,7 +1,4 @@
-package p4_group_8_repo;
-
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -9,12 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.event.EventHandler;
-import p4_group_8_repo.resources.Game;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.EventObject;
 import java.util.ResourceBundle;
 
 
@@ -35,7 +29,7 @@ public class MenuController implements Initializable {
     }
 
     public void infoButtonClicked(ActionEvent event) throws IOException {
-        Parent infoParent = FXMLLoader.load(getClass().getResource("Info.fxml"));
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Info.fxml"));
         Scene infoScene = new Scene(infoParent);
 
         Stage infoWindow = (Stage)((Node)event.getSource()).getScene().getWindow();

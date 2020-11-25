@@ -1,5 +1,3 @@
-package p4_group_8_repo;
-
 import javafx.scene.image.Image;
 
 public class Log extends Actor {

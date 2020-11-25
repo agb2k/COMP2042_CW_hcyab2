@@ -1,5 +1,3 @@
-package p4_group_8_repo;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.application.Application;
@@ -17,7 +15,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/Menu.fxml"));
 		scene1 = new Scene(root);
 
 		primaryStage.setScene(scene1);

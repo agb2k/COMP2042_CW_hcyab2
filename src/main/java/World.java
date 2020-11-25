@@ -1,6 +1,3 @@
-package p4_group_8_repo;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 
 public abstract class World extends Pane {
