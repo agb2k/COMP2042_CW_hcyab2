@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HighscoreController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="601.0">
+         <children>
+            <StackPane prefHeight="77.0" prefWidth="601.0" style="-fx-background-color: #242322;">
+               <children>
+                  <Label text="Highscores" textFill="#045a61">
+                     <font>
+                        <Font name="Wingdings" size="62.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane layoutX="10.0" layoutY="10.0" prefHeight="285.0" prefWidth="601.0">
+               <children>
+                  <TableView fx:id="table" prefHeight="243.0" prefWidth="601.0">
+                    <columns>
+                      <TableColumn fx:id="nameColumn" editable="false" prefWidth="201.33331298828125" sortable="false" text="Name" />
+                        <TableColumn fx:id="scoreColumn" editable="false" prefWidth="81.3333740234375" sortType="DESCENDING" text="Score" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="0.0" prefWidth="601.0">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#BackClicked" text="Back to Main Menu" textAlignment="CENTER" />
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
