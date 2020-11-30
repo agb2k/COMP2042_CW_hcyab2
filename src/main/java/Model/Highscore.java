@@ -29,6 +29,4 @@ public class Highscore {
         this.ScoreColumn = ScoreColumn;
         this.nameColumn = nameColumn;
     }
-
-
 }

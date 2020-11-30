@@ -1,17 +1,30 @@
 package Model;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-
+//class was previously known as Actor
 /**
  * This class inherits all the properties of the actor class
  * This class is involved in the processes the main character(frog) goes through i.e. movements, death etc.
  */
 
-
-public class Animal extends Actor {
+public class Frog extends Actor{
+	/**
+	 * Images of the frog when travelling to its respective direction
+	 */
 	Image imgW1;
 	Image imgA1;
 	Image imgS1;
@@ -20,9 +33,22 @@ public class Animal extends Actor {
 	Image imgA2;
 	Image imgS2;
 	Image imgD2;
+	/**
+	 * The points of the frog
+	 */
 	int points = 0;
+	/**
+	 * Tally points to be used for each life
+	 */
+	int pointTally = 0;
 	int end = 0;
+	/**
+	 * Boolean used to decide whether the frog has completed an even number of steps
+	 */
 	private boolean second = false;
+	/**
+	 * Boolean to see if the frog is moving
+	 */
 	boolean noMove = false;
 	double movement = 13.3333333 * 2;
 	double movementX = 10.666666 * 2;
@@ -33,9 +59,22 @@ public class Animal extends Actor {
 	boolean changeScore = false;
 	int carD = 0;
 	double w = 800;
+
+	public static int getLives() {
+		return lives;
+	}
+
+	static int lives = 5;
 	ArrayList<End> inter = new ArrayList<>();
 
-	public Animal(String imageLink) {
+	/**
+	 * <pre>
+	 * Initializes the frog character to move and switch to the respective image when particular buttons are clicked
+	 * Also, increases the score whenever moved upwards
+	 * </pre>
+	 * @param imageLink The path of the frog image or any image to be used here
+	 */
+	public Frog(String imageLink) {
 		setImage(new Image(imageLink, imgSize, imgSize, true, true));
 		setX(300);
 		setY(679.8 + movement);
@@ -97,6 +136,7 @@ public class Animal extends Actor {
 						changeScore = true;
 						w = getY();
 						points += 10;
+						pointTally += 10;
 					}
 					move(0, -movement);
 					setImage(imgW1);
@@ -117,7 +157,7 @@ public class Animal extends Actor {
 			}
 		});
 	}
-	
+
 	@Override
 	public void act(long now) {
 		int bounds = 0;
@@ -129,6 +169,7 @@ public class Animal extends Actor {
 			move(movement*2, 0);
 		}
 		if (carDeath) {
+
 			noMove = true;
 			if ((now)% 11 ==0) {
 				carD++;
@@ -151,7 +192,24 @@ public class Animal extends Actor {
 				noMove = false;
 				if (points>50) {
 					points-=50;
+					pointTally-=50;
 					changeScore = true;
+					lives--;
+					if(lives == 0){
+						gameOverAlert();
+					}
+					else{
+						deadScoreAlert();
+					}
+				}
+				else{
+					lives--;
+					if(lives == 0){
+						gameOverAlert();
+					}
+					else{
+						deadScoreAlert();
+					}
 				}
 			}
 			
@@ -182,10 +240,26 @@ public class Animal extends Actor {
 				noMove = false;
 				if (points>50) {
 					points-=50;
+					pointTally -=50;
 					changeScore = true;
+					lives--;
+					if(lives == 0){
+						gameOverAlert();
+					}
+					else{
+						deadScoreAlert();
+					}
+				}else{
+					lives--;
+					if(lives == 0){
+						gameOverAlert();
+					}
+					else{
+						deadScoreAlert();
+					}
 				}
+
 			}
-			
 		}
 		
 		if (getX()>600) {
@@ -218,8 +292,10 @@ public class Animal extends Actor {
 			if (getIntersectingObjects(End.class).get(0).isActivated()) {
 				end--;
 				points-=50;
+				pointTally-=50;
 			}
 			points+=50;
+			pointTally+=50;
 			changeScore = true;
 			w=800;
 			getIntersectingObjects(End.class).get(0).setEnd();
@@ -233,6 +309,65 @@ public class Animal extends Actor {
 			//setY(679.8+movement);
 		}
 	}
+
+	public static void saveRoundScore(int lives, int score, String filepath){
+		try {
+			FileWriter fw = new FileWriter(filepath, true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter pw = new PrintWriter(bw);
+
+			pw.println("Round"+ (5-lives)+","+ score);
+			pw.flush();
+			pw.close();
+		}
+		catch (Exception E){
+			JOptionPane.showMessageDialog(null, "Error! Score not saved :(");
+		}
+	}
+
+	public void deleteScores(String filepath){
+		try {
+			PrintWriter pw = new PrintWriter(filepath);
+			pw.close();
+		}
+		catch (Exception E){
+			JOptionPane.showMessageDialog(null, "Error! Scores not deleted :(");
+		}
+	}
+
+	String text = "";
+	public void deadScoreAlert(){
+
+		if(pointTally<0){
+			pointTally = 0;
+		}
+
+		text = text + ("\nRound "+ (5-lives) +" Score: " + pointTally);
+		saveRoundScore(lives, pointTally,"src/main/resources/Misc/roundScore.csv");
+		pointTally = 0;
+
+		try{
+			Stage roundScore = new Stage();
+			Pane root = FXMLLoader.load(getClass().getResource("/View/RoundScore.fxml"));
+			Scene roundScoreScene = new Scene(root);
+			roundScore.setScene(roundScoreScene);
+			roundScore.show();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	private void gameOverAlert() {
+		Alert end = new Alert(Alert.AlertType.INFORMATION);
+		end.setTitle("You died!");
+		end.setHeaderText("Game over :(");
+		end.setContentText("Try again");
+		end.show();
+		deadScoreAlert();
+		deleteScores("src/main/resources/Misc/roundScore.csv");
+
+	}
+
 	public boolean getStop() {
 		return end==5;
 	}

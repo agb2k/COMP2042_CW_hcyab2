@@ -32,13 +32,11 @@ public class MenuController implements Initializable {
         System.out.println("View is now loaded!");
     }
 
-    public void startButtonClicked(ActionEvent event){
+    public void startButtonClicked(){
         username = JOptionPane.showInputDialog("Please enter your name:");
-        System.out.println("Hi " + username);
+        System.out.println(username + " started the game");
         new Game(username);
     }
-
-
 
     public void infoButtonClicked(ActionEvent event) throws IOException {
         Parent infoParent = FXMLLoader.load(getClass().getResource("/View/Info.fxml"));
@@ -60,4 +58,14 @@ public class MenuController implements Initializable {
         highscoreWindow.show();
     }
 
+
+    public void scoreTestButtonClicked(ActionEvent event) throws IOException {
+        Parent scoreParent = FXMLLoader.load(getClass().getResource("/View/RoundScore.fxml"));
+        Scene scoreScene = new Scene(scoreParent);
+
+        Stage scoreWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        scoreWindow.setScene(scoreScene);
+        scoreWindow.show();
+    }
 }

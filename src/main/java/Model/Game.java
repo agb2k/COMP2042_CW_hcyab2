@@ -1,5 +1,6 @@
 package Model;
 
+import com.sun.media.jfxmediaimpl.platform.Platform;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,31 +19,40 @@ public class Game{
 
     AnimationTimer timer;
     MyStage background;
-    Animal animal;
+    Frog frog;
 
 
+    /**
+     * Creates the stage, scene and adds items to it
+     * @param userName Name of the user which is entered right before the game
+     */
     public Game(String userName){
+        deleteScores("src/main/resources/Misc/roundScore.csv");
         Stage game = new Stage();
-
         background = new MyStage();
         Scene scene2  = new Scene(background,600,700);
 
-        //Changed the source of the image so the background image appears
+        /**
+         * Adds the background image for the game
+         */
         BackgroundImage froggerback = new BackgroundImage("file:src/main/resources/Images/iKogsKW.png");
-//      Adds background image
         background.add(froggerback);
-//      First layer of logs from top
+
+        /**
+         * Adds the logs to the game
+         */
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 0, 166, 0.75));
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 220, 166, 0.75));
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 440, 166, 0.75));
-//        2nd Layer of logs from top
         background.add(new Log("file:src/main/resources/Images/logs.png", 300, 0, 276, -2));
         background.add(new Log("file:src/main/resources/Images/logs.png", 300, 400, 276, -2));
-//        3rd layer of logs from top
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 50, 329, 0.75));
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 270, 329, 0.75));
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 490, 329, 0.75));
 
+        /**
+         * Adds the turtles to the game
+         */
         background.add(new Turtle(500, 376, -1, 130, 130));
         background.add(new Turtle(300, 376, -1, 130, 130));
         background.add(new WetTurtle(700, 376, -1, 130, 130));
@@ -50,15 +60,24 @@ public class Game{
         background.add(new WetTurtle(400, 217, -1, 130, 130));
         background.add(new WetTurtle(200, 217, -1, 130, 130));
 
+        /**
+         * Adds the end check point to the game
+         */
         background.add(new End(13,96));
         background.add(new End(141,96));
         background.add(new End(141 + 141-13,96));
         background.add(new End(141 + 141-13+141-13+1,96));
         background.add(new End(141 + 141-13+141-13+141-13+3,96));
 
-        animal = new Animal("file:src/main/resources/Images/froggerUp.png");
-        background.add(animal);
+        /**
+         * Adds the frog to the game
+         */
+        frog = new Frog("file:src/main/resources/Images/froggerUp.png");
+        background.add(frog);
 
+        /**
+         * Adds the obstacles (vehicles) to the game
+         */
         background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 0, 649, 1, 120, 120));
         background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 300, 649, 1, 120, 120));
         background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 600, 649, 1, 120, 120));
@@ -69,21 +88,62 @@ public class Game{
         background.add(new Obstacle("file:src/main/resources/Images/truck2Right.png", 0, 540, 1, 200, 200));
         background.add(new Obstacle("file:src/main/resources/Images/truck2Right.png", 500, 540, 1, 200, 200));
         background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 500, 490, -5, 50, 50));
+        /**
+         * Adds the initial score to the game
+         */
         background.add(new Digit(0, 30, 360, 25));
+        /**
+         * Sets up the game
+         */
         background.start();
+        /**
+         * Sets the games scene to Scene2
+         */
         game.setScene(scene2);
+        /**
+         * Displays the game
+         */
         game.show();
-        start(userName);
+        /**
+         * Starts multiple functions involved in the starting of the game like the timer and music
+         */
+        start(userName,game);
+
+        if (Frog.lives<1){
+            finalStop(game);
+        }
+        //How to get this to repeat?
+
+
+
     }
 
-    public void createTimer(String userName) {
+
+
+    public void deleteScores(String filepath){
+        try {
+            PrintWriter pw = new PrintWriter(filepath);
+            pw.close();
+        }
+        catch (Exception E){
+            JOptionPane.showMessageDialog(null, "Error! Scores not deleted :(");
+        }
+    }
+
+
+
+    /**
+     * Changes the frogs points and stops when game is over to show score and save it
+     * @param userName Name of player
+     */
+    public void createTimer(String userName, Stage stage) {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (animal.changeScore()) {
-                    setNumber(animal.getPoints());
+                if (frog.changeScore()) {
+                    setNumber(frog.getPoints());
                 }
-                if (animal.getStop()) {
+                if (frog.getStop()) {
                     System.out.print("STOP:");
                     background.stopMusic();
                     stop();
@@ -91,18 +151,26 @@ public class Game{
 
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("You Have Won The Game!");
-                    alert.setHeaderText("Your Score: "+animal.getPoints()+"!");
+                    alert.setHeaderText("Your Score: "+ frog.getPoints()+"!");
                     alert.setContentText("Highest Possible Score: 800");
                     alert.show();
 
                     String filepath = "src/main/resources/Misc/Highscore.csv";
-                    saveScore(userName, animal.getPoints(), filepath);
+                    saveScore(userName, frog.getPoints(), filepath);
+                    deleteScores("src/main/resources/Misc/roundScore.csv");
 
+                    finalStop(stage);
                 }
             }
         };
     }
 
+    /**
+     * Saves the score of the player in a file
+     * @param name Name of player
+     * @param score Score of the player in the game
+     * @param filepath The location of the file where the high scores are stored
+     */
     public static void saveScore(String name, int score, String filepath){
         try {
             FileWriter fw = new FileWriter(filepath, true);
@@ -118,16 +186,29 @@ public class Game{
         }
     }
 
-    public void start(String userName) {
+    /**
+     * Starts up various functions for the beginning of the game
+     * @param userName name of Player
+     */
+    public void start(String userName, Stage stage) {
 		background.playMusic();
-        createTimer(userName);
+        createTimer(userName, stage);
         timer.start();
     }
 
-    public void stop() {
+    /**
+     * Stops the timer function for the end of the game
+     */
+    public void finalStop(Stage stage) {
         timer.stop();
+        stage.close();
     }
 
+
+    /**
+     * Provides the image of the number required for the score
+     * @param n The digit required
+     */
     public void setNumber(int n) {
         int shift = 0;
         while (n > 0) {
