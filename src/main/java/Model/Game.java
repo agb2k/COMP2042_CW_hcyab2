@@ -109,10 +109,6 @@ public class Game{
          */
         start(userName,game);
 
-        if (Frog.lives<1){
-            finalStop(game);
-        }
-        //How to get this to repeat?
 
 
 
@@ -140,6 +136,12 @@ public class Game{
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                if (Frog.lives<1){
+                    background.stopMusic();
+                    stop();
+                    background.stop();
+                    finalStop(stage);
+                }
                 if (frog.changeScore()) {
                     setNumber(frog.getPoints());
                 }

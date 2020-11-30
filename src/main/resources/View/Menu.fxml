@@ -22,6 +22,5 @@
             <Font name="Gadugi Bold" size="41.0" />
          </font>
       </Label>
-      <Button fx:id="scoreTestButton" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="296.0" mnemonicParsing="false" onAction="#scoreTestButtonClicked" text="Score test" />
    </children>
 </AnchorPane>

@@ -57,15 +57,4 @@ public class MenuController implements Initializable {
         highscoreWindow.setScene(highscoreScene);
         highscoreWindow.show();
     }
-
-
-    public void scoreTestButtonClicked(ActionEvent event) throws IOException {
-        Parent scoreParent = FXMLLoader.load(getClass().getResource("/View/RoundScore.fxml"));
-        Scene scoreScene = new Scene(scoreParent);
-
-        Stage scoreWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-        scoreWindow.setScene(scoreScene);
-        scoreWindow.show();
-    }
 }
