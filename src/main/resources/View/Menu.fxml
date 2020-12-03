@@ -22,5 +22,6 @@
             <Font name="Gadugi Bold" size="41.0" />
          </font>
       </Label>
+      <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" layoutX="277.0" layoutY="296.0" mnemonicParsing="false" onAction="#exitButtonClicked" text="Exit" />
    </children>
 </AnchorPane>

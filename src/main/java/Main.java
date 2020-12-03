@@ -1,9 +1,9 @@
-import Model.Game;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 /**
@@ -24,6 +24,7 @@ public class Main extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 		scene1 = new Scene(root);
 
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.setScene(scene1);
 		primaryStage.setTitle("Frogger");
 		primaryStage.show();

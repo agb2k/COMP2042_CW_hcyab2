@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -8,22 +9,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="170.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoundScoreController">
+<AnchorPane prefHeight="190.0" prefWidth="209.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoundScoreController">
    <children>
-      <VBox prefHeight="263.0" prefWidth="419.0">
+      <VBox prefHeight="219.0" prefWidth="219.0">
          <children>
-            <StackPane prefHeight="77.0" prefWidth="601.0" style="-fx-background-color: #242322;">
+            <StackPane prefHeight="38.0" prefWidth="219.0" style="-fx-background-color: #242322;">
                <children>
-                  <Label text="Scores" textFill="#045a61">
+                  <Label text="Scores" textFill="#008993">
                      <font>
-                        <Font name="Wingdings" size="62.0" />
+                        <Font name="Wingdings" size="32.0" />
                      </font>
                   </Label>
                </children>
             </StackPane>
-            <StackPane layoutX="10.0" layoutY="10.0" prefHeight="158.0" prefWidth="419.0">
+            <StackPane layoutX="10.0" layoutY="10.0" prefHeight="393.0" prefWidth="219.0">
                <children>
-                  <TableView fx:id="table" prefHeight="171.0" prefWidth="419.0">
+                  <TableView fx:id="table" prefHeight="173.0" prefWidth="219.0">
                     <columns>
                       <TableColumn fx:id="roundColumn" editable="false" prefWidth="201.33331298828125" sortable="false" text="Round" />
                         <TableColumn fx:id="scoreColumn" editable="false" prefWidth="81.3333740234375" sortType="DESCENDING" text="Score" />
@@ -34,7 +35,11 @@
                   </TableView>
                </children>
             </StackPane>
-            <StackPane prefHeight="0.0" prefWidth="601.0" />
+            <StackPane prefHeight="153.0" prefWidth="219.0">
+               <children>
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="0.0" prefWidth="52.0" text="Back" />
+               </children>
+            </StackPane>
          </children>
       </VBox>
    </children>

@@ -3,12 +3,15 @@ package Model;
 import javafx.scene.image.Image;
 
 /**
- * This class inherits the actor class
- * Involves the digits that will be placed on the scoreboard
+ * <pre>
+ *     This class inherits the actor class
+ *     Involves the digits that will be placed on the scoreboard
+ * </pre>
+ *
  */
 
 public class Digit extends Actor{
-	Image im1;
+	final Image im1;
 	@Override
 	public void act(long now) {
 		// TODO Auto-generated method stub

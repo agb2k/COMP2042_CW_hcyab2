@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 
 public class Log extends Actor {
 
-	private double speed;
+	private final double speed;
 	@Override
 	public void act(long now) {
 		move(speed , 0);

@@ -1,14 +1,13 @@
 package Model;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
 import java.io.BufferedWriter;
@@ -25,14 +24,14 @@ public class Frog extends Actor{
 	/**
 	 * Images of the frog when travelling to its respective direction
 	 */
-	Image imgW1;
-	Image imgA1;
-	Image imgS1;
-	Image imgD1;
-	Image imgW2;
-	Image imgA2;
-	Image imgS2;
-	Image imgD2;
+	final Image imgW1;
+	final Image imgA1;
+	final Image imgS1;
+	final Image imgD1;
+	final Image imgW2;
+	final Image imgA2;
+	final Image imgS2;
+	final Image imgD2;
 	/**
 	 * The points of the frog
 	 */
@@ -50,22 +49,18 @@ public class Frog extends Actor{
 	 * Boolean to see if the frog is moving
 	 */
 	boolean noMove = false;
-	double movement = 13.3333333 * 2;
-	double movementX = 10.666666 * 2;
-	int imgSize = 40;
+	final double movement = 13.3333333 * 2;
+	final double movementX = 10.666666 * 2;
+	final int imgSize = 40;
 	boolean carDeath = false;
 	boolean waterDeath = false;
 	boolean stop = false;
 	boolean changeScore = false;
 	int carD = 0;
 	double w = 800;
-
-	public static int getLives() {
-		return lives;
-	}
-
 	static int lives = 5;
 	ArrayList<End> inter = new ArrayList<>();
+	String text = "";
 
 	/**
 	 * <pre>
@@ -86,6 +81,10 @@ public class Frog extends Actor{
 		imgA2 = new Image("file:src/main/resources/Images/froggerLeftJump.png", imgSize, imgSize, true, true);
 		imgS2 = new Image("file:src/main/resources/Images/froggerDownJump.png", imgSize, imgSize, true, true);
 		imgD2 = new Image("file:src/main/resources/Images/froggerRightJump.png", imgSize, imgSize, true, true);
+		buttonClickCheck();
+	}
+
+	private void buttonClickCheck() {
 		setOnKeyPressed(event -> {
 			if (noMove) {
 
@@ -160,7 +159,6 @@ public class Frog extends Actor{
 
 	@Override
 	public void act(long now) {
-		int bounds = 0;
 		if (getY()<0 || getY()>734) {
 			setX(300);
 			setY(679.8+movement);
@@ -168,100 +166,10 @@ public class Frog extends Actor{
 		if (getX()<0) {
 			move(movement*2, 0);
 		}
-		if (carDeath) {
 
-			noMove = true;
-			if ((now)% 11 ==0) {
-				carD++;
-			}
-			if (carD==1) {
-				setImage(new Image("file:src/main/resources/Images/cardeath1.png", imgSize, imgSize, true, true));
-			}
-			if (carD==2) {
-				setImage(new Image("file:src/main/resources/Images/cardeath2.png", imgSize, imgSize, true, true));
-			}
-			if (carD==3) {
-				setImage(new Image("file:src/main/resources/Images/cardeath3.png", imgSize, imgSize, true, true));
-			}
-			if (carD == 4) {
-				setX(300);
-				setY(679.8+movement);
-				carDeath = false;
-				carD = 0;
-				setImage(new Image("file:src/main/resources/Images/froggerUp.png", imgSize, imgSize, true, true));
-				noMove = false;
-				if (points>50) {
-					points-=50;
-					pointTally-=50;
-					changeScore = true;
-					lives--;
-					if(lives == 0){
-						gameOverAlert();
-					}
-					else{
-						deadScoreAlert();
-					}
-				}
-				else{
-					lives--;
-					if(lives == 0){
-						gameOverAlert();
-					}
-					else{
-						deadScoreAlert();
-					}
-				}
-			}
-			
-		}
-		if (waterDeath) {
-			noMove = true;
-			if ((now)% 11 ==0) {
-				carD++;
-			}
-			if (carD==1) {
-				setImage(new Image("file:src/main/resources/Images/waterdeath1.png", imgSize,imgSize , true, true));
-			}
-			if (carD==2) {
-				setImage(new Image("file:src/main/resources/Images/waterdeath2.png", imgSize,imgSize , true, true));
-			}
-			if (carD==3) {
-				setImage(new Image("file:src/main/resources/Images/waterdeath3.png", imgSize,imgSize , true, true));
-			}
-			if (carD == 4) {
-				setImage(new Image("file:src/main/resources/Images/waterdeath4.png", imgSize,imgSize , true, true));
-			}
-			if (carD == 5) {
-				setX(300);
-				setY(679.8+movement);
-				waterDeath = false;
-				carD = 0;
-				setImage(new Image("file:src/main/resources/Images/froggerUp.png", imgSize, imgSize, true, true));
-				noMove = false;
-				if (points>50) {
-					points-=50;
-					pointTally -=50;
-					changeScore = true;
-					lives--;
-					if(lives == 0){
-						gameOverAlert();
-					}
-					else{
-						deadScoreAlert();
-					}
-				}else{
-					lives--;
-					if(lives == 0){
-						gameOverAlert();
-					}
-					else{
-						deadScoreAlert();
-					}
-				}
+		carDeath(now);
+		waterDeath(now);
 
-			}
-		}
-		
 		if (getX()>600) {
 			move(-movement*2, 0);
 		}
@@ -305,8 +213,87 @@ public class Frog extends Actor{
 		}
 		else if (getY()<413){
 			waterDeath = true;
-			//setX(300);
-			//setY(679.8+movement);
+		}
+	}
+
+	private void waterDeath(long now) {
+		if (waterDeath) {
+			noMove = true;
+			if (now % 11 ==0) {
+				carD++;
+			}
+			if (carD==1) {
+				setImage(new Image("file:src/main/resources/Images/waterdeath1.png", imgSize,imgSize , true, true));
+			}
+			if (carD==2) {
+				setImage(new Image("file:src/main/resources/Images/waterdeath2.png", imgSize,imgSize , true, true));
+			}
+			if (carD==3) {
+				setImage(new Image("file:src/main/resources/Images/waterdeath3.png", imgSize,imgSize , true, true));
+			}
+			if (carD == 4) {
+				setImage(new Image("file:src/main/resources/Images/waterdeath4.png", imgSize,imgSize , true, true));
+			}
+			if (carD == 5) {
+				setX(300);
+				setY(679.8+movement);
+				waterDeath = false;
+				carD = 0;
+				setImage(new Image("file:src/main/resources/Images/froggerUp.png", imgSize, imgSize, true, true));
+				noMove = false;
+				if (points>50) {
+					points-=50;
+					pointTally -=50;
+					changeScore = true;
+				}
+				lives--;
+				if(lives == 0){
+					gameOverAlert();
+				}
+				else{
+					deadScoreAlert();
+				}
+
+			}
+		}
+	}
+
+	private void carDeath(long now) {
+		if (carDeath) {
+			noMove = true;
+			if (now % 11 ==0) {
+				carD++;
+			}
+			if (carD==1) {
+				setImage(new Image("file:src/main/resources/Images/cardeath1.png", imgSize, imgSize, true, true));
+			}
+			if (carD==2) {
+				setImage(new Image("file:src/main/resources/Images/cardeath2.png", imgSize, imgSize, true, true));
+			}
+			if (carD==3) {
+				setImage(new Image("file:src/main/resources/Images/cardeath3.png", imgSize, imgSize, true, true));
+			}
+			if (carD == 4) {
+				setX(300);
+				setY(679.8+movement);
+				carDeath = false;
+				carD = 0;
+				setImage(new Image("file:src/main/resources/Images/froggerUp.png", imgSize, imgSize, true, true));
+				noMove = false;
+				if (points>50) {
+					points-=50;
+					pointTally-=50;
+					changeScore = true;
+				}
+				lives--;
+				if(lives == 0){
+					gameOverAlert();
+				}
+				else{
+					deadScoreAlert();
+				}
+			}
+
 		}
 	}
 
@@ -335,7 +322,6 @@ public class Frog extends Actor{
 		}
 	}
 
-	String text = "";
 	public void deadScoreAlert(){
 
 		if(pointTally<0){
@@ -348,6 +334,7 @@ public class Frog extends Actor{
 
 		try{
 			Stage roundScore = new Stage();
+			roundScore.initStyle(StageStyle.UNDECORATED);
 			Pane root = FXMLLoader.load(getClass().getResource("/View/RoundScore.fxml"));
 			Scene roundScoreScene = new Scene(root);
 			roundScore.setScene(roundScoreScene);
@@ -357,8 +344,9 @@ public class Frog extends Actor{
 		}
 	}
 
-	private void gameOverAlert() {
+	void gameOverAlert() {
 		Alert end = new Alert(Alert.AlertType.INFORMATION);
+		end.initStyle(StageStyle.UTILITY);
 		end.setTitle("You died!");
 		end.setHeaderText("Game over :(");
 		end.setContentText("Try again");

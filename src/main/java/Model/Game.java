@@ -1,10 +1,10 @@
 package Model;
 
-import com.sun.media.jfxmediaimpl.platform.Platform;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
 import java.io.BufferedWriter;
@@ -18,8 +18,8 @@ import java.io.PrintWriter;
 public class Game{
 
     AnimationTimer timer;
-    MyStage background;
-    Frog frog;
+    final MyStage background;
+    final Frog frog;
 
 
     /**
@@ -30,12 +30,13 @@ public class Game{
         deleteScores("src/main/resources/Misc/roundScore.csv");
         Stage game = new Stage();
         background = new MyStage();
-        Scene scene2  = new Scene(background,600,700);
+        Scene scene2  = new Scene(background,600,800);
+        background.autosize();
 
         /**
          * Adds the background image for the game
          */
-        BackgroundImage froggerback = new BackgroundImage("file:src/main/resources/Images/iKogsKW.png");
+        BackgroundImage froggerback = new BackgroundImage("file:src/main/resources/Images/GameBackground.png");
         background.add(froggerback);
 
         /**
@@ -91,11 +92,26 @@ public class Game{
         /**
          * Adds the initial score to the game
          */
-        background.add(new Digit(0, 30, 360, 25));
+        background.add(new Digit(0, 30, 100, 50));
+
+        /**
+         * Adds a mute button to the game
+         */
+        background.add(new Mute(background,45,500,40));
+
+        /**
+         * Adds a play/pause button to the game
+         */
+        background.add(new Pause(background, 35, 550, 45));
+
         /**
          * Sets up the game
          */
         background.start();
+        /**
+         * Removes title header from game window
+         */
+        game.initStyle(StageStyle.UNDECORATED);
         /**
          * Sets the games scene to Scene2
          */
@@ -108,13 +124,12 @@ public class Game{
          * Starts multiple functions involved in the starting of the game like the timer and music
          */
         start(userName,game);
-
-
-
-
     }
 
-
+    /**
+     * Deletes the round scores in the given filepath
+     * @param filepath the location of the round score files
+     */
 
     public void deleteScores(String filepath){
         try {
@@ -126,10 +141,8 @@ public class Game{
         }
     }
 
-
-
     /**
-     * Changes the frogs points and stops when game is over to show score and save it
+     * Changes the frogs points and stops the game at appropriate times
      * @param userName Name of player
      */
     public void createTimer(String userName, Stage stage) {
@@ -151,20 +164,23 @@ public class Game{
                     stop();
                     background.stop();
 
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("You Have Won The Game!");
-                    alert.setHeaderText("Your Score: "+ frog.getPoints()+"!");
-                    alert.setContentText("Highest Possible Score: 800");
-                    alert.show();
-
-                    String filepath = "src/main/resources/Misc/Highscore.csv";
-                    saveScore(userName, frog.getPoints(), filepath);
+                    winAlert();
+                    saveScore(userName, frog.getPoints(), "src/main/resources/Misc/Highscore.csv");
                     deleteScores("src/main/resources/Misc/roundScore.csv");
 
                     finalStop(stage);
                 }
             }
         };
+    }
+
+    private void winAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("You Have Won The Game!");
+        alert.setHeaderText("Your Score: "+ frog.getPoints()+"!");
+        alert.setContentText("Highest Possible Score: 800");
+        alert.show();
     }
 
     /**
@@ -217,7 +233,7 @@ public class Game{
             int d = n / 10;
             int k = n - d * 10;
             n = d;
-            background.add(new Digit(k, 30, 360 - shift, 25));
+            background.add(new Digit(k, 30, 100 - shift, 50));
             shift+=30;
         }
     }

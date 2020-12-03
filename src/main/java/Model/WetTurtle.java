@@ -8,11 +8,11 @@ import javafx.scene.image.Image;
  */
 
 public class WetTurtle extends Actor{
-	Image turtle1;
-	Image turtle2;
-	Image turtle3;
-	Image turtle4;
-	private int speed;
+	final Image turtle1;
+	final Image turtle2;
+	final Image turtle3;
+	final Image turtle4;
+	private final int speed;
 	int i = 1;
 	boolean bool = true;
 	boolean sunk = false;

@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Game;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -22,18 +24,34 @@ import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
 
-    public Button startButton;
-    public Button infoButton;
-    public Button highScoreButton;
-    private String username;
+    @FXML
+    private Button startButton;
+
+    @FXML
+    private Button infoButton;
+
+    @FXML
+    private Button highScoreButton;
+
+    @FXML
+    private Button exitButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("View is now loaded!");
     }
 
+
+
+    @FXML
+    void exitButtonClicked(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage thisStage = (Stage) node.getScene().getWindow();
+        thisStage.close();
+    }
+
     public void startButtonClicked(){
-        username = JOptionPane.showInputDialog("Please enter your name:");
+        String username = JOptionPane.showInputDialog("Please enter your name:");
         System.out.println(username + " started the game");
         new Game(username);
     }
@@ -42,8 +60,10 @@ public class MenuController implements Initializable {
         Parent infoParent = FXMLLoader.load(getClass().getResource("/View/Info.fxml"));
         Scene infoScene = new Scene(infoParent);
 
-        Stage infoWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage infoWindow = new Stage();
 
+        infoWindow.initStyle(StageStyle.UNDECORATED);
+        infoWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
         infoWindow.setScene(infoScene);
         infoWindow.show();
     }

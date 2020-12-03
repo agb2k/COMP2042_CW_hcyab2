@@ -23,28 +23,31 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
- * This class is the High Score Menu Controller
+ * This class is the High Score Menu Controller which is used to control the Highscore menu
  */
 
 public class HighscoreController implements Initializable {
+
 
     public TableView<Highscore> table;
     public TableColumn<Highscore, String> nameColumn;
     public TableColumn<Highscore, Integer> scoreColumn;
     public Button backToMainMenu;
 
-    String fileName = "src/main/resources/Misc/Highscore.csv";
-    File file = new File(fileName);
+    final String fileName = "src/main/resources/Misc/Highscore.csv";
+    final File file = new File(fileName);
 
-    ObservableList<Highscore> list = FXCollections.observableArrayList();
+    final ObservableList<Highscore> list = FXCollections.observableArrayList();
 
     public void initList(){
+        System.out.println("High Score is now loaded!");
+
         try {
             Scanner inputStream = new Scanner(file);
             while ((inputStream.hasNext())){
                 String data = inputStream.next();
                 String[] values_line = data.split(",");
-                list.add(new Highscore(values_line[0],Integer.valueOf(values_line[1])));
+                list.add(new Highscore(values_line[0],Integer.parseInt(values_line[1])));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -54,8 +57,8 @@ public class HighscoreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initList();
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Highscore, String>("nameColumn"));
-        scoreColumn.setCellValueFactory(new PropertyValueFactory<Highscore, Integer>("scoreColumn"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("nameColumn"));
+        scoreColumn.setCellValueFactory(new PropertyValueFactory<>("scoreColumn"));
         table.setItems(list);
         table.getSortOrder().add(scoreColumn);
     }
@@ -69,4 +72,5 @@ public class HighscoreController implements Initializable {
         mainWindow.setScene(mainScene);
         mainWindow.show();
     }
+
 }

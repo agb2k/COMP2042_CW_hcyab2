@@ -8,10 +8,10 @@ import javafx.scene.image.Image;
  */
 
 public class Turtle extends Actor{
-	Image turtle1;
-	Image turtle2;
-	Image turtle3;
-	private int speed;
+	final Image turtle1;
+	final Image turtle2;
+	final Image turtle3;
+	private final int speed;
 	int i = 1;
 	boolean bool = true;
 	@Override

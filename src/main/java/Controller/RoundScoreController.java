@@ -4,23 +4,18 @@ import Model.RoundScore;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-import javafx.event.ActionEvent;
 
 
 public class RoundScoreController implements Initializable {
@@ -34,12 +29,13 @@ public class RoundScoreController implements Initializable {
     @FXML
     private TableColumn<RoundScore, Integer> scoreColumn;
 
-    private Button backClicked;
+    @FXML
+    private Button backButton;
 
-    String fileName = "src/main/resources/Misc/roundScore.csv";
-    File file = new File(fileName);
+    final String fileName = "src/main/resources/Misc/roundScore.csv";
+    final File file = new File(fileName);
 
-    ObservableList<RoundScore> RoundScoreList = FXCollections.observableArrayList();
+    final ObservableList<RoundScore> RoundScoreList = FXCollections.observableArrayList();
 
     public void initList(){
         try {
@@ -57,9 +53,15 @@ public class RoundScoreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initList();
-        roundColumn.setCellValueFactory(new PropertyValueFactory<RoundScore, String>("roundColumn"));
-        scoreColumn.setCellValueFactory(new PropertyValueFactory<RoundScore, Integer>("scoreColumn"));
+        roundColumn.setCellValueFactory(new PropertyValueFactory<>("roundColumn"));
+        scoreColumn.setCellValueFactory(new PropertyValueFactory<>("scoreColumn"));
         table.setItems(RoundScoreList);
         table.getSortOrder().add(scoreColumn);
+    }
+
+    @FXML
+    void backButtonClicked() {
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.close();
     }
 }
