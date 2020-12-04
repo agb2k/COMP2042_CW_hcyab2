@@ -64,7 +64,6 @@ public class Highscore {
      * @param nameColumn name of player
      * @param ScoreColumn score of player
      */
-
     public Highscore(String nameColumn, int levelColumn, int ScoreColumn){
         this.ScoreColumn = ScoreColumn;
         this.nameColumn = nameColumn;

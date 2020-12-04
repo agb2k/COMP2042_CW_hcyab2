@@ -9,24 +9,45 @@ public class RoundScore {
     int scoreColumn;
     String roundColumn;
 
+    /**
+     * Getter for the scoreColumn from round scores
+     * @return The values from the table column, scoreColumn
+     */
     public int getScoreColumn() {
         return scoreColumn;
     }
 
+    /**
+     * Setter for the scoreColumn table column
+     * @param scoreColumn The value to be placed in the table column, scoreColumn
+     */
     public void setScoreColumn(int scoreColumn) {
         this.scoreColumn = scoreColumn;
     }
 
+    /**
+     * Getter for the roundColumn from round scores
+     * @return The values from the table column, roundColumn
+     */
     public String getRoundColumn() {
         return roundColumn;
     }
 
-    public void setNameColumn(String roundColumnColumn) {
-        this.roundColumn = roundColumnColumn;
+    /**
+     * Setter for the roundColumn table column
+     * @param roundColumn The value to be placed in the table column, roundColumn
+     */
+    public void setRoundColumn(String roundColumn) {
+        this.roundColumn = roundColumn;
     }
 
-    public RoundScore(String nameColumn, int ScoreColumn){
+    /**
+     * Helps with storing the values
+     * @param roundColumn roundColumn values
+     * @param ScoreColumn scoreColumn values
+     */
+    public RoundScore(String roundColumn, int ScoreColumn){
         this.scoreColumn = ScoreColumn;
-        this.roundColumn = nameColumn;
+        this.roundColumn = roundColumn;
     }
 }

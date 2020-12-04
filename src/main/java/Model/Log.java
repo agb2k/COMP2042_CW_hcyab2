@@ -10,9 +10,14 @@ import javafx.scene.image.Image;
 public class Log extends Actor {
 
 	private final double speed;
+
+	/**
+	 * Gives the object an action to do
+	 * @param now Time of the current frame
+	 */
 	@Override
 	public void act(long now) {
-		if(Game.pauseGame == true){
+		if(Game.pauseGame){
 
 		}
 		else{
@@ -24,7 +29,15 @@ public class Log extends Actor {
 		}
 
 	}
-	
+
+	/**
+	 * Adds the logs to the game
+	 * @param imageLink Log image file path
+	 * @param size Size of image
+	 * @param xpos x coordinate of image
+	 * @param ypos y coordinate of image
+	 * @param s Speed of log
+	 */
 	public Log(String imageLink, int size, int xpos, int ypos, double s) {
 		setImage(new Image(imageLink, size,size, true, true));
 		setX(xpos);
@@ -32,6 +45,10 @@ public class Log extends Actor {
 		speed = s;
 	}
 
+	/**
+	 * Used to determine if log is moving to the left i.e. speed is less than 0
+	 * @return Boolean value of whether speed is less than 0
+	 */
 	public boolean getLeft() {
 		return speed < 0;
 	}

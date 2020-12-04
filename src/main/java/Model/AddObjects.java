@@ -36,7 +36,7 @@ public class AddObjects {
         /**
          * Adds a play/pause button to the game
          */
-        background.add(new Pause(background, 35, 550, 45));
+        background.add(new Pause(35, 550, 45));
     }
 
     /**

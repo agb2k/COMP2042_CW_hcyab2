@@ -12,7 +12,13 @@ public class Pause extends Actor{
 
     }
 
-    public Pause(MyStage stage, int dim, int x, int y){
+    /**
+     * Adds the pause button to the game
+     * @param dim Size of pause button image
+     * @param x x coordinate of placement of pause button
+     * @param y y coordinate of placement of pause button
+     */
+    public Pause(int dim, int x, int y){
 
         pause = new Image("file:src/main/resources/Images/pause.png", dim, dim, true, true);
         play = new Image("file:src/main/resources/Images/play.png", dim, dim, true, true);

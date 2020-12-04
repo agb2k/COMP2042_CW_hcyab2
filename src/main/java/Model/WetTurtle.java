@@ -13,9 +13,12 @@ public class WetTurtle extends Actor{
 	final Image turtle3;
 	final Image turtle4;
 	private final double speed;
-	int i = 1;
-	boolean bool = true;
 	boolean sunk = false;
+
+	/**
+	 * The actions of the wet turtle required for the game
+	 * @param now Time of the current frame
+	 */
 	@Override
 	public void act(long now) {
 		if(Game.pauseGame){
@@ -45,9 +48,16 @@ public class WetTurtle extends Actor{
 			if (getX() < -75 && speed<0)
 				setX(600);
 		}
-
-
 	}
+
+	/**
+	 * Adds wet turtles to game
+	 * @param xpos x coordinate in which turtle is added
+	 * @param ypos y coordinate in which turtle is added
+	 * @param s Speed of turtle
+	 * @param w width of image
+	 * @param h height of image
+	 */
 	public WetTurtle(int xpos, int ypos, double s, int w, int h) {
 		turtle1 = new Image("file:src/main/resources/Images/TurtleAnimation1.png", w, h, true, true);
 		turtle2 = new Image("file:src/main/resources/Images/TurtleAnimation2Wet.png", w, h, true, true);
@@ -58,6 +68,11 @@ public class WetTurtle extends Actor{
 		speed = s;
 		setImage(turtle2);
 	}
+
+	/**
+	 * Checks if turtles sunk
+	 * @return Boolean of whether they've sunken
+	 */
 	public boolean isSunk() {
 		return sunk;
 	}
