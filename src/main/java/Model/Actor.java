@@ -9,7 +9,6 @@ import java.util.ArrayList;
  * This class is inherited by many other classes to provide functions
  */
 
-
 public abstract class Actor extends ImageView{
 
     public void move(double dx, double dy) {

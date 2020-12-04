@@ -84,6 +84,9 @@ public class Frog extends Actor{
 		buttonClickCheck();
 	}
 
+	/**
+	 * Checks if a button has been clicked and performs the corresponding actions
+	 */
 	private void buttonClickCheck() {
 		setOnKeyPressed(event -> {
 			if(Game.pauseGame){
@@ -167,6 +170,10 @@ public class Frog extends Actor{
 		});
 	}
 
+	/**
+	 * Used to initialize the requirements for the frog and it's surrounding obstacles
+	 * @param now Time of the current frame
+	 */
 	@Override
 	public void act(long now) {
 		outOfBounds();
@@ -177,6 +184,9 @@ public class Frog extends Actor{
 		collision();
 	}
 
+	/**
+	 * Checks if the frog collides with any of the other objects and performs the corresponding tasks
+	 */
 	private void collision() {
 		if (getIntersectingObjects(Obstacle.class).size() >= 1) {
 			carDeath = true;
@@ -219,6 +229,9 @@ public class Frog extends Actor{
 		}
 	}
 
+	/**
+	 * Checks if the frog is out of bounds of the map
+	 */
 	private void outOfBounds() {
 		if (getY()<0 || getY()>734) {
 			setX(300);
@@ -232,6 +245,11 @@ public class Frog extends Actor{
 		}
 	}
 
+
+	/**
+	 * The actions involved when the frog dies due to water
+	 * @param now Time of the current frame
+	 */
 	private void waterDeath(long now) {
 		if (waterDeath) {
 			noMove = true;
@@ -274,6 +292,10 @@ public class Frog extends Actor{
 		}
 	}
 
+	/**
+	 * The actions involved when the frog dies due to vehicles
+	 * @param now Time of the current frame
+	 */
 	private void carDeath(long now) {
 		if (carDeath) {
 			noMove = true;
@@ -313,13 +335,20 @@ public class Frog extends Actor{
 		}
 	}
 
+
+	/**
+	 * Saves the scores of each round
+	 * @param lives Remaining lives of frog
+	 * @param score The round score
+	 * @param filepath The location of the file in which the round scores will be saved
+	 */
 	public static void saveRoundScore(int lives, int score, String filepath){
 		try {
 			FileWriter fw = new FileWriter(filepath, true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter pw = new PrintWriter(bw);
 
-			pw.println("Round"+ (5-lives)+","+ score);
+			pw.println((5-lives)+","+ score);
 			pw.flush();
 			pw.close();
 		}
@@ -328,6 +357,11 @@ public class Frog extends Actor{
 		}
 	}
 
+
+	/**
+	 * Clears the filepath i.e used to delete scores from filepath
+	 * @param filepath path of score file in our case
+	 */
 	public void deleteScores(String filepath){
 		try {
 			PrintWriter pw = new PrintWriter(filepath);
@@ -338,6 +372,9 @@ public class Frog extends Actor{
 		}
 	}
 
+	/**
+	 * Alerts when frog dies
+	 */
 	public void deadScoreAlert(){
 
 		if(pointTally<0){
@@ -360,6 +397,9 @@ public class Frog extends Actor{
 		}
 	}
 
+	/**
+	 * Alerts when game is over
+	 */
 	void gameOverAlert() {
 		Alert end = new Alert(Alert.AlertType.INFORMATION);
 		end.initStyle(StageStyle.UTILITY);
@@ -373,14 +413,26 @@ public class Frog extends Actor{
 		Game.timer.stop();
 	}
 
+	/**
+	 * Function used to check if it's time to stop the game
+	 * @return Boolean value which checks if the integer value,end, is equal to 5
+	 */
 	public boolean getStop() {
 		return end==5;
 	}
-	
+
+	/**
+	 * Gets the frogs points
+	 * @return Points of frog
+	 */
 	public int getPoints() {
 		return points;
 	}
-	
+
+	/**
+	 * Checks if score has changed
+	 * @return A boolean value
+	 */
 	public boolean changeScore() {
 		if (changeScore) {
 			changeScore = false;
