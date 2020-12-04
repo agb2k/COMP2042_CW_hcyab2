@@ -21,18 +21,6 @@ public class MyStage extends World{
 	 * Initiates the MyStage type to be used later on
 	 */
 	public MyStage() {
-		
-//		mediaPlayer.play();
-//		mediaPlayer.setOnEndOfMedia(new Runnable() {
-//
-//			@Override
-//			public void run() {
-//				mediaPlayer.seek(Duration.ZERO);
-//				
-//			}
-//			
-//		});
-//		mediaPlayer.play();
 	}
 
 	/**

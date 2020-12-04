@@ -20,6 +20,7 @@ import java.util.ArrayList;
  * This class is involved in the processes the main character(frog) goes through i.e. movements, death etc.
  */
 
+
 public class Frog extends Actor{
 	/**
 	 * Images of the frog when travelling to its respective direction
@@ -48,13 +49,12 @@ public class Frog extends Actor{
 	/**
 	 * Boolean to see if the frog is moving
 	 */
-	boolean noMove = false;
+	static boolean noMove = false;
 	final double movement = 13.3333333 * 2;
 	final double movementX = 10.666666 * 2;
 	final int imgSize = 40;
 	boolean carDeath = false;
 	boolean waterDeath = false;
-	boolean stop = false;
 	boolean changeScore = false;
 	int carD = 0;
 	double w = 800;
@@ -86,13 +86,67 @@ public class Frog extends Actor{
 
 	private void buttonClickCheck() {
 		setOnKeyPressed(event -> {
-			if (noMove) {
+			if(Game.pauseGame){
+				//Do Nothing
+			}
+			else{
+				if (noMove) {
 
-			} else {
-				if (second) {
-					if (event.getCode() == KeyCode.W) {
+				} else {
+					if (second) {
+						if (event.getCode() == KeyCode.W) {
+							move(0, -movement);
+							changeScore = false;
+							setImage(imgW1);
+							second = false;
+						} else if (event.getCode() == KeyCode.A) {
+							move(-movementX, 0);
+							setImage(imgA1);
+							second = false;
+						} else if (event.getCode() == KeyCode.S) {
+							move(0, movement);
+							setImage(imgS1);
+							second = false;
+						} else if (event.getCode() == KeyCode.D) {
+							move(movementX, 0);
+							setImage(imgD1);
+							second = false;
+						}
+					} else if (event.getCode() == KeyCode.W) {
 						move(0, -movement);
-						changeScore = false;
+						setImage(imgW2);
+						second = true;
+					} else if (event.getCode() == KeyCode.A) {
+						move(-movementX, 0);
+						setImage(imgA2);
+						second = true;
+					} else if (event.getCode() == KeyCode.S) {
+						move(0, movement);
+						setImage(imgS2);
+						second = true;
+					} else if (event.getCode() == KeyCode.D) {
+						move(movementX, 0);
+						setImage(imgD2);
+						second = true;
+					}
+				}
+			}
+		});
+		setOnKeyReleased(event -> {
+			if(Game.pauseGame){
+				//Do nothing
+			}
+			else{
+				if (noMove) {
+				} else {
+					if (event.getCode() == KeyCode.W) {
+						if (getY() < w) {
+							changeScore = true;
+							w = getY();
+							points += 10;
+							pointTally += 10;
+						}
+						move(0, -movement);
 						setImage(imgW1);
 						second = false;
 					} else if (event.getCode() == KeyCode.A) {
@@ -108,50 +162,6 @@ public class Frog extends Actor{
 						setImage(imgD1);
 						second = false;
 					}
-				} else if (event.getCode() == KeyCode.W) {
-					move(0, -movement);
-					setImage(imgW2);
-					second = true;
-				} else if (event.getCode() == KeyCode.A) {
-					move(-movementX, 0);
-					setImage(imgA2);
-					second = true;
-				} else if (event.getCode() == KeyCode.S) {
-					move(0, movement);
-					setImage(imgS2);
-					second = true;
-				} else if (event.getCode() == KeyCode.D) {
-					move(movementX, 0);
-					setImage(imgD2);
-					second = true;
-				}
-			}
-		});
-		setOnKeyReleased(event -> {
-			if (noMove) {
-			} else {
-				if (event.getCode() == KeyCode.W) {
-					if (getY() < w) {
-						changeScore = true;
-						w = getY();
-						points += 10;
-						pointTally += 10;
-					}
-					move(0, -movement);
-					setImage(imgW1);
-					second = false;
-				} else if (event.getCode() == KeyCode.A) {
-					move(-movementX, 0);
-					setImage(imgA1);
-					second = false;
-				} else if (event.getCode() == KeyCode.S) {
-					move(0, movement);
-					setImage(imgS1);
-					second = false;
-				} else if (event.getCode() == KeyCode.D) {
-					move(movementX, 0);
-					setImage(imgD1);
-					second = false;
 				}
 			}
 		});
@@ -159,40 +169,33 @@ public class Frog extends Actor{
 
 	@Override
 	public void act(long now) {
-		if (getY()<0 || getY()>734) {
-			setX(300);
-			setY(679.8+movement);
-		}
-		if (getX()<0) {
-			move(movement*2, 0);
-		}
+		outOfBounds();
 
 		carDeath(now);
 		waterDeath(now);
 
-		if (getX()>600) {
-			move(-movement*2, 0);
-		}
+		collision();
+	}
+
+	private void collision() {
 		if (getIntersectingObjects(Obstacle.class).size() >= 1) {
 			carDeath = true;
 		}
-		if (getX() == 240 && getY() == 82) {
-			stop = true;
-		}
 		if (getIntersectingObjects(Log.class).size() >= 1 && !noMove) {
 			if(getIntersectingObjects(Log.class).get(0).getLeft())
-				move(-2,0);
-			else
-				move (.75,0);
+				move(-2*AddObjects.speedFactor,0);
+			else{
+				move (.75*AddObjects.speedFactor,0);
+			}
 		}
 		else if (getIntersectingObjects(Turtle.class).size() >= 1 && !noMove) {
-			move(-1,0);
+			move(-1*AddObjects.speedFactor,0);
 		}
 		else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
 			if (getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
 				waterDeath = true;
 			} else {
-				move(-1,0);
+				move(-1*AddObjects.speedFactor,0);
 			}
 		}
 		else if (getIntersectingObjects(End.class).size() >= 1) {
@@ -213,6 +216,19 @@ public class Frog extends Actor{
 		}
 		else if (getY()<413){
 			waterDeath = true;
+		}
+	}
+
+	private void outOfBounds() {
+		if (getY()<0 || getY()>734) {
+			setX(300);
+			setY(679.8+movement);
+		}
+		if (getX()<0) {
+			move(movement*2, 0);
+		}
+		if (getX()>600) {
+			move(-movement*2, 0);
 		}
 	}
 
@@ -354,6 +370,7 @@ public class Frog extends Actor{
 		deadScoreAlert();
 		deleteScores("src/main/resources/Misc/roundScore.csv");
 
+		Game.timer.stop();
 	}
 
 	public boolean getStop() {

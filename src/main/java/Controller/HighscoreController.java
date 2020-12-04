@@ -32,6 +32,7 @@ public class HighscoreController implements Initializable {
     public TableView<Highscore> table;
     public TableColumn<Highscore, String> nameColumn;
     public TableColumn<Highscore, Integer> scoreColumn;
+    public TableColumn<Highscore, Integer> levelColumn;
     public Button backToMainMenu;
 
     final String fileName = "src/main/resources/Misc/Highscore.csv";
@@ -47,7 +48,7 @@ public class HighscoreController implements Initializable {
             while ((inputStream.hasNext())){
                 String data = inputStream.next();
                 String[] values_line = data.split(",");
-                list.add(new Highscore(values_line[0],Integer.parseInt(values_line[1])));
+                list.add(new Highscore(values_line[0],Integer.parseInt(values_line[1]),Integer.parseInt(values_line[2])));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -59,6 +60,7 @@ public class HighscoreController implements Initializable {
         initList();
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("nameColumn"));
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("scoreColumn"));
+        levelColumn.setCellValueFactory(new PropertyValueFactory<>("levelColumn"));
         table.setItems(list);
         table.getSortOrder().add(scoreColumn);
     }

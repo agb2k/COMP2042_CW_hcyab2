@@ -11,6 +11,13 @@ public class Mute extends Actor{
 
     }
 
+    /**
+     * Sets up functioning mute button for Stage
+     * @param stage Stage in which the mute button will be added
+     * @param dim Dimension required (Will scale according to image in this case)
+     * @param x x coordinate to be placed
+     * @param y y coordinate to be placed
+     */
     public Mute(MyStage stage, int dim, int x, int y){
         mute = new Image("file:src/main/resources/Images/mute.png", dim, dim, true, true);
         unmute = new Image("file:src/main/resources/Images/unmute.png", dim, dim, true, true);

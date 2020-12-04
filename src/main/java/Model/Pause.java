@@ -6,12 +6,14 @@ public class Pause extends Actor{
     final Image pause;
     final Image play;
     boolean second = false;
+    static double temp;
     @Override
     public void act(long now) {
 
     }
 
     public Pause(MyStage stage, int dim, int x, int y){
+
         pause = new Image("file:src/main/resources/Images/pause.png", dim, dim, true, true);
         play = new Image("file:src/main/resources/Images/play.png", dim, dim, true, true);
         setImage(pause);
@@ -21,13 +23,18 @@ public class Pause extends Actor{
         setOnMouseClicked(
                 event ->{
                     if(second){
-                        stage.playMusic();
-                        setImage(play);
-                        second = false;
-                    }else{
-                        stage.stopMusic();
+                        AddObjects.speedFactor = temp;
                         setImage(pause);
+                        second = false;
+                        System.out.println(AddObjects.speedFactor);
+                        Game.pauseGame = false;
+                    }else{
+                        temp = AddObjects.speedFactor;
+                        AddObjects.speedFactor = 0;
+                        setImage(play);
                         second = true;
+                        System.out.println(AddObjects.speedFactor);
+                        Game.pauseGame = true;
                     }
                 }
         );

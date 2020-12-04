@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.Game;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -36,9 +39,26 @@ public class MenuController implements Initializable {
     @FXML
     private Button exitButton;
 
+    @FXML
+    private ChoiceBox<String> levelSelector;
+
+    ObservableList list = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        loadData();
         System.out.println("View is now loaded!");
+    }
+
+    public void loadData(){
+        list.removeAll(list);
+        String a = "Level 1";
+        String b = "Level 2";
+        String c = "Level 3";
+        String d = "Level 4";
+        String e = "Level 5";
+        list.addAll(a,b,c,d,e);
+        levelSelector.getItems().addAll(list);
     }
 
 
@@ -52,8 +72,25 @@ public class MenuController implements Initializable {
 
     public void startButtonClicked(){
         String username = JOptionPane.showInputDialog("Please enter your name:");
-        System.out.println(username + " started the game");
-        new Game(username);
+        if((levelSelector.getValue()) == "Level 1"){
+            new Game(username, 1);
+        }
+        else if((levelSelector.getValue()) == "Level 2"){
+            new Game(username, 2);
+        }
+        else if((levelSelector.getValue()) == "Level 3"){
+            new Game(username, 3);
+        }
+        else if((levelSelector.getValue()) == "Level 4"){
+            new Game(username, 4);
+        }
+        else if((levelSelector.getValue()) == "Level 5"){
+            new Game(username, 5);
+        }
+        else {
+            System.out.println("Choose another level");
+        }
+
     }
 
     public void infoButtonClicked(ActionEvent event) throws IOException {

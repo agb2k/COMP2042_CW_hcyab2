@@ -8,6 +8,7 @@ public class Highscore {
 
     int ScoreColumn;
     String nameColumn;
+    int levelColumn;
 
     /**
      * Getter for the score column
@@ -44,13 +45,31 @@ public class Highscore {
     }
 
     /**
+     * Getter for level column
+     */
+    public int getLevelColumn() {
+        return levelColumn;
+    }
+
+    /**
+     * Setter for name column
+     * @param levelColumn the value to be assigned to the levelColumn value
+     */
+    public void setLevelColumn(int levelColumn) {
+        this.levelColumn = levelColumn;
+    }
+
+    /**
      * Function to assign values to the high score menu
      * @param nameColumn name of player
      * @param ScoreColumn score of player
      */
 
-    public Highscore(String nameColumn, int ScoreColumn){
+    public Highscore(String nameColumn, int levelColumn, int ScoreColumn){
         this.ScoreColumn = ScoreColumn;
         this.nameColumn = nameColumn;
+        this.levelColumn = levelColumn;
     }
+
+
 }

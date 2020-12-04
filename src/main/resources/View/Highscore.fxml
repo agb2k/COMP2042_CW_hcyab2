@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HighscoreController">
    <children>
       <VBox prefHeight="400.0" prefWidth="601.0">
@@ -28,6 +27,7 @@
                   <TableView fx:id="table" prefHeight="243.0" prefWidth="601.0">
                     <columns>
                       <TableColumn fx:id="nameColumn" editable="false" prefWidth="201.33331298828125" sortable="false" text="Name" />
+                        <TableColumn fx:id="levelColumn" prefWidth="75.0" text="Level" />
                         <TableColumn fx:id="scoreColumn" editable="false" prefWidth="81.3333740234375" sortType="DESCENDING" text="Score" />
                     </columns>
                      <columnResizePolicy>
