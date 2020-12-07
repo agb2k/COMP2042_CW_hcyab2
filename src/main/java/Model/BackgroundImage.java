@@ -19,6 +19,7 @@ public class BackgroundImage extends Actor{
 	}
 //	Changed the zoom settings
 	/**
+	 * Used to display background image of game
 	 * @param imageLink Background image
 	 */
 //	700, 857

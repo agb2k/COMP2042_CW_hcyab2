@@ -10,7 +10,10 @@ import java.util.List;
 
 public abstract class World extends Pane {
     private AnimationTimer timer;
-    
+
+    /**
+     * Initiates a new world
+     */
     public World() {
 
         sceneProperty().addListener((observable, oldValue, newValue) -> {
@@ -41,6 +44,9 @@ public abstract class World extends Pane {
         });
     }
 
+    /**
+     * Creates a timer for the game
+     */
     public void createTimer() {
         timer = new AnimationTimer() {
             @Override
@@ -56,23 +62,43 @@ public abstract class World extends Pane {
         };
     }
 
+    /**
+     * Starts a timer
+     */
     public void start() {
     	createTimer();
         timer.start();
     }
 
+    /**
+     * Stops the timer
+     */
     public void stop() {
         timer.stop();
     }
-    
+
+    /**
+     * Adds actor
+     * @param actor The actor to be added
+     */
     public void add(Actor actor) {
         getChildren().add(actor);
     }
 
+    /**
+     * Removes acotr
+     * @param actor The actor to be removed
+     */
     public void remove(Actor actor) {
         getChildren().remove(actor);
     }
 
+    /**
+     * Gets the objects of a class
+     * @param cls The class in which the objects are obtained from
+     * @param <A> An array list
+     * @return An array list
+     */
     public <A extends Actor> List<A> getObjects(Class<A> cls) {
         ArrayList<A> someArray = new ArrayList<>();
         for (Node n: getChildren()) {
@@ -83,5 +109,9 @@ public abstract class World extends Pane {
         return someArray;
     }
 
+    /**
+     * Performs the actions required
+     * @param now Current time
+     */
     public abstract void act(long now);
 }

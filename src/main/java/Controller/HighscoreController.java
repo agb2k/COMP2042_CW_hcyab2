@@ -40,6 +40,9 @@ public class HighscoreController implements Initializable {
 
     final ObservableList<Highscore> list = FXCollections.observableArrayList();
 
+    /**
+     * Initializes the list
+     */
     public void initList(){
         System.out.println("High Score is now loaded!");
 
@@ -55,6 +58,11 @@ public class HighscoreController implements Initializable {
         }
     }
 
+    /**
+     * Initializes the .fxml screen
+     * @param url The file path of .fxml file
+     * @param resourceBundle Type of object
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initList();
@@ -65,6 +73,11 @@ public class HighscoreController implements Initializable {
         table.getSortOrder().add(scoreColumn);
     }
 
+    /**
+     * Actions taking place when back button is clicked
+     * @param event Back button is clicked
+     * @throws IOException Checks for errors
+     */
     public void BackClicked(ActionEvent event) throws IOException {
         Parent mainParent = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
         Scene mainScene = new Scene(mainParent);

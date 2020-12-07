@@ -44,12 +44,21 @@ public class MenuController implements Initializable {
 
     ObservableList list = FXCollections.observableArrayList();
 
+
+    /**
+     * Initializes the .fxml scene
+     * @param location File path of. fxml file
+     * @param resources Type of object
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadData();
         System.out.println("View is now loaded!");
     }
 
+    /**
+     * Loads data into list
+     */
     public void loadData(){
         list.removeAll(list);
         String a = "Level 1";
@@ -62,7 +71,10 @@ public class MenuController implements Initializable {
     }
 
 
-
+    /**
+     * Actions taking place when exit button is clicked
+     * @param event Exit button is clicked
+     */
     @FXML
     void exitButtonClicked(ActionEvent event) {
         Node node = (Node) event.getSource();
@@ -70,7 +82,11 @@ public class MenuController implements Initializable {
         thisStage.close();
     }
 
+    /**
+     * Actions taking place when start button is clicked
+     */
     public void startButtonClicked(){
+        Game.setPauseGame(false);
         String username = JOptionPane.showInputDialog("Please enter your name:");
         if((levelSelector.getValue()) == "Level 1"){
             new Game(username, 1);
@@ -93,6 +109,11 @@ public class MenuController implements Initializable {
 
     }
 
+    /**
+     * Actions taking place when info button is clicked
+     * @param event Info button is clicked
+     * @throws IOException Checks for errors
+     */
     public void infoButtonClicked(ActionEvent event) throws IOException {
         Parent infoParent = FXMLLoader.load(getClass().getResource("/View/Info.fxml"));
         Scene infoScene = new Scene(infoParent);
@@ -105,6 +126,11 @@ public class MenuController implements Initializable {
         infoWindow.show();
     }
 
+    /**
+     * Actions taking place when high score button is clicked
+     * @param event High score button is clicked
+     * @throws IOException Checks for errors
+     */
     public void highScoreButtonClicked(ActionEvent event) throws IOException {
         Parent highscoreParent = FXMLLoader.load(getClass().getResource("/View/Highscore.fxml"));
         Scene highscoreScene = new Scene(highscoreParent);

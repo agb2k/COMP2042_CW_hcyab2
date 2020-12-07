@@ -18,11 +18,22 @@ import java.util.ResourceBundle;
 
 public class InfoController implements Initializable {
 
+    /**
+     * Initializes the .fxml screen
+     * @param url The file path of .fxml file
+     * @param resourceBundle Type of object
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Info is now loaded!");
     }
 
+
+    /**
+     * Actions taking place when back to main menu button is clicked
+     * @param event Back to main menu button
+     * @throws IOException Checks for errors
+     */
     public void BackToMainMenuClicked(ActionEvent event) throws IOException {
         Parent mainParent = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
         Scene mainScene = new Scene(mainParent);

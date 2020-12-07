@@ -3,9 +3,9 @@ package Model;
 import javafx.scene.image.Image;
 
 public class Mute extends Actor{
-    final Image mute;
-    final Image unmute;
-    boolean second = false;
+    private final Image mute;
+    private final Image unmute;
+    private boolean second = false;
     @Override
     public void act(long now) {
 

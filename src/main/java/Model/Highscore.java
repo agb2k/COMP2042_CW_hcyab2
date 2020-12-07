@@ -6,9 +6,9 @@ package Model;
 
 public class Highscore {
 
-    int ScoreColumn;
-    String nameColumn;
-    int levelColumn;
+    private int ScoreColumn;
+    private String nameColumn;
+    private int levelColumn;
 
     /**
      * Getter for the score column

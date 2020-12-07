@@ -17,10 +17,11 @@ import java.io.PrintWriter;
 
 public class Game{
 
-    static AnimationTimer timer;
-    final MyStage background;
-    final Frog frog;
-    static boolean pauseGame = false;
+    private static AnimationTimer timer;
+    private final MyStage background;
+    private final Frog frog;
+    private static boolean pauseGame = false;
+
 
 
     /**
@@ -86,7 +87,7 @@ public class Game{
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (Frog.lives<1){
+                if (frog.getLives()<1){
                     background.stopMusic();
                     stop();
                     background.stop();
@@ -107,8 +108,35 @@ public class Game{
 
                     finalStop(stage);
                 }
+                if (frog.isUserStop()){
+
+                    System.out.print("USER STOPPED:");
+                    background.stopMusic();
+                    stop();
+                    background.stop();
+
+                    userStopAlert();
+                    deleteScores("src/main/resources/Misc/roundScore.csv");
+
+                    finalStop(stage);
+
+                    frog.setUserStop(false);
+
+                }
             }
         };
+    }
+
+    /**
+     * Alerts the player that he's stopped the game
+     */
+    private void userStopAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("You Have Won The Game!");
+        alert.setHeaderText("Game Stopped!");
+        alert.setContentText("Come again soon!");
+        alert.show();
     }
 
     /**
@@ -177,5 +205,29 @@ public class Game{
             background.add(new Digit(k, 30, 100 - shift, 50));
             shift+=30;
         }
+    }
+
+    /**
+     * Getter for timer
+     * @return timer
+     */
+    public static AnimationTimer getTimer() {
+        return timer;
+    }
+
+    /**
+     * Getter for pauseGame boolean
+     * @return pauseGame
+     */
+    public static boolean getPauseGame() {
+        return pauseGame;
+    }
+
+    /**
+     * Setter for pauseGame boolean
+     * @param pauseGame Either true or false should be assigned
+     */
+    public static void setPauseGame(boolean pauseGame) {
+        Game.pauseGame = pauseGame;
     }
 }

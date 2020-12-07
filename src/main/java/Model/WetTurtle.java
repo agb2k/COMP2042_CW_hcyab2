@@ -8,12 +8,12 @@ import javafx.scene.image.Image;
  */
 
 public class WetTurtle extends Actor{
-	final Image turtle1;
-	final Image turtle2;
-	final Image turtle3;
-	final Image turtle4;
+	private final Image turtle1;
+	private final Image turtle2;
+	private final Image turtle3;
+	private final Image turtle4;
 	private final double speed;
-	boolean sunk = false;
+	private boolean sunk = false;
 
 	/**
 	 * The actions of the wet turtle required for the game
@@ -21,7 +21,7 @@ public class WetTurtle extends Actor{
 	 */
 	@Override
 	public void act(long now) {
-		if(Game.pauseGame){
+		if(Game.getPauseGame()){
 
 		}
 		else {

@@ -14,6 +14,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
 //class was previously known as Actor
 /**
  * This class inherits all the properties of the actor class
@@ -21,27 +22,33 @@ import java.util.ArrayList;
  */
 
 
-public class Frog extends Actor{
+public class Frog<userStop> extends Actor{
 	/**
 	 * Images of the frog when travelling to its respective direction
 	 */
-	final Image imgW1;
-	final Image imgA1;
-	final Image imgS1;
-	final Image imgD1;
-	final Image imgW2;
-	final Image imgA2;
-	final Image imgS2;
-	final Image imgD2;
+	private final Image imgW1;
+	private final Image imgA1;
+	private final Image imgS1;
+	private final Image imgD1;
+	private final Image imgW2;
+	private final Image imgA2;
+	private final Image imgS2;
+	private final Image imgD2;
 	/**
 	 * The points of the frog
 	 */
-	int points = 0;
+	private int points = 0;
 	/**
 	 * Tally points to be used for each life
 	 */
-	int pointTally = 0;
-	int end = 0;
+	private int pointTally = 0;
+
+
+
+	/**
+	 * Used to check for end game
+	 */
+	private int end = 0;
 	/**
 	 * Boolean used to decide whether the frog has completed an even number of steps
 	 */
@@ -49,18 +56,66 @@ public class Frog extends Actor{
 	/**
 	 * Boolean to see if the frog is moving
 	 */
-	static boolean noMove = false;
-	final double movement = 13.3333333 * 2;
-	final double movementX = 10.666666 * 2;
-	final int imgSize = 40;
-	boolean carDeath = false;
-	boolean waterDeath = false;
-	boolean changeScore = false;
-	int carD = 0;
-	double w = 800;
-	static int lives = 5;
-	ArrayList<End> inter = new ArrayList<>();
-	String text = "";
+	private boolean noMove = false;
+
+	/**
+	 * Number of units the frog moves forward on the Y-axis
+	 */
+	private final double movement = 13.3333333 * 2;
+
+	/**
+	 * Number of units the frog moves forward on the X-axis
+	 */
+	private final double movementX = 10.666666 * 2;
+
+	/**
+	 * Image size
+	 */
+	private final int imgSize = 40;
+	/**
+	 * Boolean that tells whether a car death has taken place
+	 */
+	private boolean carDeath = false;
+
+	/**
+	 * Boolean that tells whether water death has taken place
+	 */
+	private boolean waterDeath = false;
+
+	/**
+	 * Boolean that tells whether the score has changed
+	 */
+	private boolean changeScore = false;
+
+	/**
+	 * Car death integer
+	 */
+	private int carD = 0;
+
+	/**
+	 * Max score
+	 */
+	private double w = 800;
+
+	/**
+	 * Frog lives
+	 */
+	private int lives = 5;
+
+	/**
+	 * Array list of end points
+	 */
+	private ArrayList<End> inter = new ArrayList<>();
+
+	/**
+	 * String placeholder
+	 */
+	private String text = "";
+
+	/**
+	 * Boolean to check if user stops game
+	 */
+	private static boolean userStop = false;
 
 	/**
 	 * <pre>
@@ -89,7 +144,7 @@ public class Frog extends Actor{
 	 */
 	private void buttonClickCheck() {
 		setOnKeyPressed(event -> {
-			if(Game.pauseGame){
+			if(Game.getPauseGame()){
 				//Do Nothing
 			}
 			else{
@@ -136,7 +191,7 @@ public class Frog extends Actor{
 			}
 		});
 		setOnKeyReleased(event -> {
-			if(Game.pauseGame){
+			if(Game.getPauseGame()){
 				//Do nothing
 			}
 			else{
@@ -193,19 +248,19 @@ public class Frog extends Actor{
 		}
 		if (getIntersectingObjects(Log.class).size() >= 1 && !noMove) {
 			if(getIntersectingObjects(Log.class).get(0).getLeft())
-				move(-2*AddObjects.speedFactor,0);
+				move(-2*AddObjects.getSpeedFactor(),0);
 			else{
-				move (.75*AddObjects.speedFactor,0);
+				move (.75*AddObjects.getSpeedFactor(),0);
 			}
 		}
 		else if (getIntersectingObjects(Turtle.class).size() >= 1 && !noMove) {
-			move(-1*AddObjects.speedFactor,0);
+			move(-1*AddObjects.getSpeedFactor(),0);
 		}
 		else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
 			if (getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
 				waterDeath = true;
 			} else {
-				move(-1*AddObjects.speedFactor,0);
+				move(-1*AddObjects.getSpeedFactor(),0);
 			}
 		}
 		else if (getIntersectingObjects(End.class).size() >= 1) {
@@ -400,7 +455,7 @@ public class Frog extends Actor{
 	/**
 	 * Alerts when game is over
 	 */
-	void gameOverAlert() {
+	public void gameOverAlert() {
 		Alert end = new Alert(Alert.AlertType.INFORMATION);
 		end.initStyle(StageStyle.UTILITY);
 		end.setTitle("You died!");
@@ -410,7 +465,7 @@ public class Frog extends Actor{
 		deadScoreAlert();
 		deleteScores("src/main/resources/Misc/roundScore.csv");
 
-		Game.timer.stop();
+		Game.getTimer().stop();
 	}
 
 	/**
@@ -442,5 +497,19 @@ public class Frog extends Actor{
 		
 	}
 
+	/**
+	 * Getter for lives
+	 * @return lives
+	 */
+	public int getLives() {
+		return lives;
+	}
 
+	public static boolean isUserStop() {
+		return userStop;
+	}
+
+	public static void setUserStop(boolean userStop) {
+		Frog.userStop = userStop;
+	}
 }

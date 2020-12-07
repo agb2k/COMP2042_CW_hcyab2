@@ -3,10 +3,10 @@ package Model;
 import javafx.scene.image.Image;
 
 public class Pause extends Actor{
-    final Image pause;
-    final Image play;
-    boolean second = false;
-    static double temp;
+    private final Image pause;
+    private final Image play;
+    private boolean second = false;
+    private static double temp;
     @Override
     public void act(long now) {
 
@@ -29,18 +29,16 @@ public class Pause extends Actor{
         setOnMouseClicked(
                 event ->{
                     if(second){
-                        AddObjects.speedFactor = temp;
+                        AddObjects.setSpeedFactor(temp);
                         setImage(pause);
                         second = false;
-                        System.out.println(AddObjects.speedFactor);
-                        Game.pauseGame = false;
+                        Game.setPauseGame(false);
                     }else{
-                        temp = AddObjects.speedFactor;
-                        AddObjects.speedFactor = 0;
+                        temp = AddObjects.getSpeedFactor();
+                        AddObjects.setSpeedFactor(0);
                         setImage(play);
                         second = true;
-                        System.out.println(AddObjects.speedFactor);
-                        Game.pauseGame = true;
+                        Game.setPauseGame(true);
                     }
                 }
         );

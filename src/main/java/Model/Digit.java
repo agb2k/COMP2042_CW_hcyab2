@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
  */
 
 public class Digit extends Actor{
-	final Image im1;
+	private final Image im1;
 	@Override
 	public void act(long now) {
 		// TODO Auto-generated method stub

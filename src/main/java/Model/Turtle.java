@@ -8,9 +8,9 @@ import javafx.scene.image.Image;
  */
 
 public class Turtle extends Actor{
-	final Image turtle1;
-	final Image turtle2;
-	final Image turtle3;
+	private final Image turtle1;
+	private final Image turtle2;
+	private final Image turtle3;
 	private final double speed;
 
 	/**
@@ -19,7 +19,7 @@ public class Turtle extends Actor{
 	 */
 	@Override
 	public void act(long now) {
-		if(Game.pauseGame == true){
+		if(Game.getPauseGame() == true){
 
 		}
 		else {

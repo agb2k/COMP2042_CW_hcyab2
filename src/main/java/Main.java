@@ -12,8 +12,7 @@ import javafx.stage.StageStyle;
  */
 
 public class Main extends Application {
-	Scene scene1;
-
+	private Scene scene1;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -29,5 +28,4 @@ public class Main extends Application {
 		primaryStage.setTitle("Frogger");
 		primaryStage.show();
 	}
-
 }

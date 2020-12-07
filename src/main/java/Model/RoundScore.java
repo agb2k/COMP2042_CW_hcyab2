@@ -6,8 +6,8 @@ package Model;
 
 public class RoundScore {
 
-    int scoreColumn;
-    String roundColumn;
+    private int scoreColumn;
+    private String roundColumn;
 
     /**
      * Getter for the scoreColumn from round scores

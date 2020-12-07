@@ -37,6 +37,9 @@ public class RoundScoreController implements Initializable {
 
     final ObservableList<RoundScore> RoundScoreList = FXCollections.observableArrayList();
 
+    /**
+     * Initializes the list
+     */
     public void initList(){
         try {
             Scanner inputStream = new Scanner(file);
@@ -50,6 +53,11 @@ public class RoundScoreController implements Initializable {
         }
     }
 
+    /**
+     * Initializes the .fxml scene
+     * @param url File path of .fxml file
+     * @param resourceBundle Type of object
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initList();
@@ -59,6 +67,9 @@ public class RoundScoreController implements Initializable {
         table.getSortOrder().add(scoreColumn);
     }
 
+    /**
+     * Events taking place when back button is clicked
+     */
     @FXML
     void backButtonClicked() {
         Stage stage = (Stage) backButton.getScene().getWindow();
