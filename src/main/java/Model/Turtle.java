@@ -19,7 +19,7 @@ public class Turtle extends Actor{
 	 */
 	@Override
 	public void act(long now) {
-		if(Game.getPauseGame() == true){
+		if(Game.getPauseGame() || Game.isPowerUp()){
 
 		}
 		else {

@@ -21,6 +21,7 @@ public class Game{
     private final MyStage background;
     private final Frog frog;
     private static boolean pauseGame = false;
+    private static boolean powerUp = false;
 
 
 
@@ -40,8 +41,9 @@ public class Game{
         /**
          * Adds the frog to the game
          */
-        frog = new Frog("file:src/main/resources/Images/froggerUp.png");
+        frog = new Frog();
         background.add(frog);
+
 
         /**
          * Sets up the game
@@ -229,5 +231,13 @@ public class Game{
      */
     public static void setPauseGame(boolean pauseGame) {
         Game.pauseGame = pauseGame;
+    }
+
+    public static boolean isPowerUp() {
+        return powerUp;
+    }
+
+    public static void setPowerUp(boolean powerUp) {
+        Game.powerUp = powerUp;
     }
 }

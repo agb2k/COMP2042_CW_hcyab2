@@ -87,6 +87,7 @@ public class MenuController implements Initializable {
      */
     public void startButtonClicked(){
         Game.setPauseGame(false);
+        Game.setPowerUp(false);
         String username = JOptionPane.showInputDialog("Please enter your name:");
         if((levelSelector.getValue()) == "Level 1"){
             new Game(username, 1);

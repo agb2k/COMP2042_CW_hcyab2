@@ -18,14 +18,16 @@ public class AddObjects {
 
         //1-3
         speedFactor = 0.2 + (level*0.2);
-        //4-6
-        if (3<level && level<7){
-            speedFactor = level/5;
+        //4-7
+        if (3<level && level<8){
+            speedFactor = level/4;
         }
         addBackgroundImg(background);
         addLogs(background);
         addTurtles(background);
         addEnds(background);
+        addPowerUps(background);
+
 
         /**
          * Adds the initial score to the game
@@ -47,16 +49,45 @@ public class AddObjects {
          */
         background.add(new Stop(32, 550, 47));
 
+        /**
+         * Adds life display
+         */
+//        addLives(background, frog);
+
         if(level == 1 || level == 2 || level == 3){
             addCarsEasy(background);
         }
         else if(level == 4 || level == 5){
             addCars(background);
+            addMinotaurs(background);
+
         }
 
         System.out.println(speedFactor);
     }
 
+    /**
+     * Adds Minotaurs
+     */
+    private static void addMinotaurs(MyStage background){
+        background.add(new Minotaur(100, 480, 2.5*speedFactor, 70, 70));
+        background.add(new Minotaur(250, 480, 2.5*speedFactor, 70, 70));
+        background.add(new Minotaur(400, 480, 2.5*speedFactor, 70, 70));
+        background.add(new Minotaur(550, 480, 2.5*speedFactor, 70, 70));
+    }
+
+    /**
+     * Add life count
+     * @param background Background to add the lives
+     */
+    private static void addLives(MyStage background){
+        Lives life1, life2, life3, life4, life5;
+        background.add(life1 = new Lives(30, 200, 50));
+        background.add(life2 = new Lives(30, 235, 50));
+        background.add(life3 = new Lives(30, 270, 50));
+        background.add(life4 = new Lives(30, 305, 50));
+        background.add(life5 = new Lives(30, 340, 50));
+    }
     /**
      * Adds the background image for the game
      * @param background Background to add the image
@@ -80,7 +111,6 @@ public class AddObjects {
         background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 550, 597, -1*speedFactor, 50, 50));
         background.add(new Obstacle("file:src/main/resources/Images/truck2Right.png", 0, 540, 1*speedFactor, 200, 200));
         background.add(new Obstacle("file:src/main/resources/Images/truck2Right.png", 500, 540, 1*speedFactor, 200, 200));
-        background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 500, 490, -5*speedFactor, 50, 50));
     }
 
     /**
@@ -94,6 +124,7 @@ public class AddObjects {
         background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 100, 597, -1*speedFactor, 50, 50));
         background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 400, 597, -1*speedFactor, 50, 50));
         background.add(new Obstacle("file:src/main/resources/Images/truck2Right.png", 500, 540, 1*speedFactor, 200, 200));
+
     }
 
     /**
@@ -134,6 +165,14 @@ public class AddObjects {
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 50, 329, 0.75*speedFactor));
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 270, 329, 0.75*speedFactor));
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 490, 329, 0.75*speedFactor));
+    }
+
+    private static  void  addPowerUps(MyStage background){
+
+        background.add(new PowerUp( 40, 0, 166, 0.75*speedFactor, 2000));
+        background.add(new PowerUp( 40, 440, 166, 0.75*speedFactor,7000));
+        background.add(new PowerUp( 40, 50, 329, 0.75*speedFactor,10000));
+        background.add(new PowerUp(40, 490, 329, 0.75*speedFactor,10000));
     }
 
     /**

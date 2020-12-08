@@ -17,8 +17,8 @@ public class Log extends Actor {
 	 */
 	@Override
 	public void act(long now) {
-		if(Game.getPauseGame()){
-
+		if(Game.getPauseGame() || Game.isPowerUp()){
+			//Do nothing
 		}
 		else{
 			move(speed , 0);

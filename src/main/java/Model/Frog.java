@@ -14,6 +14,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 //class was previously known as Actor
 /**
@@ -22,7 +24,7 @@ import java.util.ArrayList;
  */
 
 
-public class Frog<userStop> extends Actor{
+public class Frog extends Actor{
 	/**
 	 * Images of the frog when travelling to its respective direction
 	 */
@@ -42,9 +44,6 @@ public class Frog<userStop> extends Actor{
 	 * Tally points to be used for each life
 	 */
 	private int pointTally = 0;
-
-
-
 	/**
 	 * Used to check for end game
 	 */
@@ -122,10 +121,9 @@ public class Frog<userStop> extends Actor{
 	 * Initializes the frog character to move and switch to the respective image when particular buttons are clicked
 	 * Also, increases the score whenever moved upwards
 	 * </pre>
-	 * @param imageLink The path of the frog image or any image to be used here
 	 */
-	public Frog(String imageLink) {
-		setImage(new Image(imageLink, imgSize, imgSize, true, true));
+	public Frog() {
+		setImage(new Image("file:src/main/resources/Images/froggerUp.png", imgSize, imgSize, true, true));
 		setX(300);
 		setY(679.8 + movement);
 		imgW1 = new Image("file:src/main/resources/Images/froggerUp.png", imgSize, imgSize, true, true);
@@ -246,42 +244,91 @@ public class Frog<userStop> extends Actor{
 		if (getIntersectingObjects(Obstacle.class).size() >= 1) {
 			carDeath = true;
 		}
-		if (getIntersectingObjects(Log.class).size() >= 1 && !noMove) {
-			if(getIntersectingObjects(Log.class).get(0).getLeft())
-				move(-2*AddObjects.getSpeedFactor(),0);
-			else{
-				move (.75*AddObjects.getSpeedFactor(),0);
+		if (getIntersectingObjects(Minotaur.class).size() >= 1) {
+			carDeath = true;
+		}
+		if (getIntersectingObjects(PowerUp.class).size() >= 1) {
+			Game.setPowerUp(true);
+			new Timer().schedule(new TimerTask(){
+				@Override
+				public void run(){
+					Game.setPowerUp(false);
+				}
+			},5000);
+		}
+
+		if(Game.isPowerUp()){
+			if (getIntersectingObjects(Log.class).size() >= 1 && !noMove) {
+				move(0,0);
 			}
-		}
-		else if (getIntersectingObjects(Turtle.class).size() >= 1 && !noMove) {
-			move(-1*AddObjects.getSpeedFactor(),0);
-		}
-		else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
-			if (getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
+			else if (getIntersectingObjects(Turtle.class).size() >= 1 && !noMove) {
+				move(0,0);
+			}
+			else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
+				if (getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
+					waterDeath = true;
+				} else {
+					move(0,0);
+				}
+			}
+			else if (getIntersectingObjects(End.class).size() >= 1) {
+				inter = (ArrayList<End>) getIntersectingObjects(End.class);
+				if (getIntersectingObjects(End.class).get(0).isActivated()) {
+					end--;
+					points-=50;
+					pointTally-=50;
+				}
+				points+=50;
+				pointTally+=50;
+				changeScore = true;
+				w=800;
+				getIntersectingObjects(End.class).get(0).setEnd();
+				end++;
+				setX(300);
+				setY(679.8+movement);
+			}
+			else if (getY()<413){
 				waterDeath = true;
-			} else {
+			}
+		}else{
+			if (getIntersectingObjects(Log.class).size() >= 1 && !noMove) {
+				if(getIntersectingObjects(Log.class).get(0).getLeft())
+					move(-2*AddObjects.getSpeedFactor(),0);
+				else{
+					move (.75*AddObjects.getSpeedFactor(),0);
+				}
+			}
+			else if (getIntersectingObjects(Turtle.class).size() >= 1 && !noMove) {
 				move(-1*AddObjects.getSpeedFactor(),0);
 			}
-		}
-		else if (getIntersectingObjects(End.class).size() >= 1) {
-			inter = (ArrayList<End>) getIntersectingObjects(End.class);
-			if (getIntersectingObjects(End.class).get(0).isActivated()) {
-				end--;
-				points-=50;
-				pointTally-=50;
+			else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
+				if (getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
+					waterDeath = true;
+				} else {
+					move(-1*AddObjects.getSpeedFactor(),0);
+				}
 			}
-			points+=50;
-			pointTally+=50;
-			changeScore = true;
-			w=800;
-			getIntersectingObjects(End.class).get(0).setEnd();
-			end++;
-			setX(300);
-			setY(679.8+movement);
+			else if (getIntersectingObjects(End.class).size() >= 1) {
+				inter = (ArrayList<End>) getIntersectingObjects(End.class);
+				if (getIntersectingObjects(End.class).get(0).isActivated()) {
+					end--;
+					points-=50;
+					pointTally-=50;
+				}
+				points+=50;
+				pointTally+=50;
+				changeScore = true;
+				w=800;
+				getIntersectingObjects(End.class).get(0).setEnd();
+				end++;
+				setX(300);
+				setY(679.8+movement);
+			}
+			else if (getY()<413){
+				waterDeath = true;
+			}
 		}
-		else if (getY()<413){
-			waterDeath = true;
-		}
+
 	}
 
 	/**

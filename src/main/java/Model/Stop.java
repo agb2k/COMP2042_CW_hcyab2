@@ -29,8 +29,8 @@ public class Stop extends Actor{
         setOnMouseClicked(
                 event ->{
                     Alert conf = new Alert(Alert.AlertType.CONFIRMATION);
-                    conf.setHeaderText(null);
                     conf.initStyle(StageStyle.UTILITY);
+                    conf.setHeaderText(null);
                     conf.setContentText("Are you sure?");
                     Optional <ButtonType> action = conf.showAndWait();
                     if(action.get() == ButtonType.OK){
