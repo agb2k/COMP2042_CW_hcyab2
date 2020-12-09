@@ -2,6 +2,8 @@ package Model;
 
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
@@ -23,6 +25,9 @@ public class PowerUp extends Actor{
 	private final Image im6;
 	private double speed;
 	private boolean go = false;
+	private int xCoordIndex;
+	private int yCoordIndex;
+	private long delay;
 	@Override
 	public void act(long now) {
 		if(Game.getPauseGame() || Game.isPowerUp()){
@@ -62,11 +67,9 @@ public class PowerUp extends Actor{
 	/**
 	 * Grabs the digit you want and places it
 	 * @param dim height and width of digit
-	 * @param x
-	 * @param y
 	 */
 
-	public PowerUp(int dim, int x, int y, double s, long delay) {
+	public PowerUp(int dim, double s) {
 
 		im1 = new Image("file:src/main/resources/Images/Frame 1.png", dim, dim, true, true);
 		im2 = new Image("file:src/main/resources/Images/Frame 2.png", dim, dim, true, true);
@@ -75,9 +78,30 @@ public class PowerUp extends Actor{
 		im5 = new Image("file:src/main/resources/Images/Frame 5.png", dim, dim, true, true);
 		im6 = new Image("file:src/main/resources/Images/Frame 6.png", dim, dim, true, true);
 
+		ArrayList <Integer> xCoordList = new ArrayList();
+		xCoordList.add(0);
+		xCoordList.add(440);
+		xCoordList.add(50);
+		xCoordList.add(490);
+
+		ArrayList <Integer> yCoordList = new ArrayList();
+		yCoordList.add(166);
+		yCoordList.add(329);
+
+		Random rn = new Random();
+		xCoordIndex = rn.nextInt(3 - 0 + 1) + 0;
+		if(xCoordIndex == 0 || xCoordIndex == 2){
+			yCoordIndex = 0;
+		}else if(xCoordIndex == 1 || xCoordIndex == 3){
+			yCoordIndex = 1;
+		}
+
 		speed = s;
-		setX(x+55);
-		setY(y);
+
+		delay = ThreadLocalRandom.current().nextLong(5000, 100000);
+		setX((xCoordList.get(xCoordIndex))+55);
+		setY(yCoordList.get(yCoordIndex));
+		System.out.println("x Coord List Index: "+xCoordIndex+", Y Coord List Index: "+yCoordIndex+", Delay: "+delay);
 		new Timer().schedule(new TimerTask(){
 			@Override
 			public void run(){
@@ -85,6 +109,14 @@ public class PowerUp extends Actor{
 				go = true;
 			}
 		},delay);
+		new Timer().schedule(new TimerTask(){
+			@Override
+			public void run(){
+				setImage(null);
+				go = false;
+			}
+		},(delay+20000));
+
 	}
 	
 }

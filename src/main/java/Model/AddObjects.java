@@ -26,7 +26,6 @@ public class AddObjects {
         addLogs(background);
         addTurtles(background);
         addEnds(background);
-        addPowerUps(background);
 
 
         /**
@@ -60,7 +59,7 @@ public class AddObjects {
         else if(level == 4 || level == 5){
             addCars(background);
             addMinotaurs(background);
-
+            background.add(new PowerUp( 40,0.75*speedFactor));
         }
 
         System.out.println(speedFactor);
@@ -165,14 +164,6 @@ public class AddObjects {
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 50, 329, 0.75*speedFactor));
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 270, 329, 0.75*speedFactor));
         background.add(new Log("file:src/main/resources/Images/log3.png", 150, 490, 329, 0.75*speedFactor));
-    }
-
-    private static  void  addPowerUps(MyStage background){
-
-        background.add(new PowerUp( 40, 0, 166, 0.75*speedFactor, 2000));
-        background.add(new PowerUp( 40, 440, 166, 0.75*speedFactor,7000));
-        background.add(new PowerUp( 40, 50, 329, 0.75*speedFactor,10000));
-        background.add(new PowerUp(40, 490, 329, 0.75*speedFactor,10000));
     }
 
     /**
