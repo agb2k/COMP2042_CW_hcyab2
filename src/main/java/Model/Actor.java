@@ -26,6 +26,14 @@ public abstract class Actor extends ImageView{
         return (World) getParent();
     }
 
+    public double getWidth() {
+        return this.getBoundsInLocal().getWidth();
+    }
+
+    public double getHeight() {
+        return this.getBoundsInLocal().getHeight();
+    }
+
     /**
      * Checks if the actor intersects with the items of a class
      * @param cls A class containing items

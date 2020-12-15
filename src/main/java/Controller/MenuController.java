@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Frog;
 import Model.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,14 +11,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -42,6 +46,8 @@ public class MenuController implements Initializable {
     @FXML
     private ChoiceBox<String> levelSelector;
 
+    private MediaPlayer mediaPlayer;
+
     ObservableList list = FXCollections.observableArrayList();
 
 
@@ -52,8 +58,17 @@ public class MenuController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        playMusic();
         loadData();
         System.out.println("View is now loaded!");
+    }
+
+    public void playMusic() {
+        String musicFile = "src/main/resources/Music/Frogger Main Song Theme (loop).mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
     }
 
     /**
@@ -66,8 +81,14 @@ public class MenuController implements Initializable {
         String c = "Level 3";
         String d = "Level 4";
         String e = "Level 5";
-        list.addAll(a,b,c,d,e);
+        String f = "Level 6";
+        String g = "Level 7";
+        String h = "Level 8";
+        String i = "Level 9";
+        String j = "Level 10";
+        list.addAll(a,b,c,d,e,f,g,h,i,j);
         levelSelector.getItems().addAll(list);
+        levelSelector.setValue(a);
     }
 
 
@@ -80,32 +101,63 @@ public class MenuController implements Initializable {
         Node node = (Node) event.getSource();
         Stage thisStage = (Stage) node.getScene().getWindow();
         thisStage.close();
+        System.exit(0);
     }
 
     /**
      * Actions taking place when start button is clicked
      */
     public void startButtonClicked(){
+        mediaPlayer.stop();
+        String username = null;
         Game.setPauseGame(false);
         Game.setPowerUp(false);
-        String username = JOptionPane.showInputDialog("Please enter your name:");
-        if((levelSelector.getValue()) == "Level 1"){
-            new Game(username, 1);
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.initStyle(StageStyle.UTILITY);
+        dialog.setTitle(null);
+        dialog.setHeaderText(null);
+        dialog.setContentText("Please enter your name:");
+        Optional<String> result = dialog.showAndWait();
+
+        if (result.isPresent()){
+            username=result.get();
         }
-        else if((levelSelector.getValue()) == "Level 2"){
-            new Game(username, 2);
-        }
-        else if((levelSelector.getValue()) == "Level 3"){
-            new Game(username, 3);
-        }
-        else if((levelSelector.getValue()) == "Level 4"){
-            new Game(username, 4);
-        }
-        else if((levelSelector.getValue()) == "Level 5"){
-            new Game(username, 5);
-        }
-        else {
-            System.out.println("Choose another level");
+        if(username == null){
+            //Do Nothing
+        }else {
+            if((levelSelector.getValue()) == "Level 1"){
+                new Game(username, 1);
+            }
+            else if((levelSelector.getValue()) == "Level 2"){
+                new Game(username, 2);
+            }
+            else if((levelSelector.getValue()) == "Level 3"){
+                new Game(username, 3);
+            }
+            else if((levelSelector.getValue()) == "Level 4"){
+                new Game(username, 4);
+            }
+            else if((levelSelector.getValue()) == "Level 5"){
+                new Game(username, 5);
+            }
+            else if((levelSelector.getValue()) == "Level 6"){
+                new Game(username, 6);
+            }
+            else if((levelSelector.getValue()) == "Level 7"){
+                new Game(username, 7);
+            }
+            else if((levelSelector.getValue()) == "Level 8"){
+                new Game(username, 8);
+            }
+            else if((levelSelector.getValue()) == "Level 9"){
+                new Game(username, 9);
+            }
+            else if((levelSelector.getValue()) == "Level 10"){
+                new Game(username, 10);
+            }
+            else {
+                System.out.println("Choose another level");
+            }
         }
 
     }
@@ -116,6 +168,7 @@ public class MenuController implements Initializable {
      * @throws IOException Checks for errors
      */
     public void infoButtonClicked(ActionEvent event) throws IOException {
+        mediaPlayer.stop();
         Parent infoParent = FXMLLoader.load(getClass().getResource("/View/Info.fxml"));
         Scene infoScene = new Scene(infoParent);
 
@@ -133,6 +186,7 @@ public class MenuController implements Initializable {
      * @throws IOException Checks for errors
      */
     public void highScoreButtonClicked(ActionEvent event) throws IOException {
+        mediaPlayer.stop();
         Parent highscoreParent = FXMLLoader.load(getClass().getResource("/View/Highscore.fxml"));
         Scene highscoreScene = new Scene(highscoreParent);
 

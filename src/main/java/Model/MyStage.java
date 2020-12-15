@@ -27,7 +27,7 @@ public class MyStage extends World{
 	 * Plays music assigned through the filepath
 	 */
 	public void playMusic() {
-		String musicFile = "src/main/resources/Music/Frogger Main Song Theme (loop).mp3";
+		String musicFile = "src/main/resources/Music/Axel F.mp3";
 		Media sound = new Media(new File(musicFile).toURI().toString());
 		mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);

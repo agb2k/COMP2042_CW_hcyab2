@@ -31,6 +31,7 @@ public class Game{
      * @param level Game level
      */
     public Game(String userName, int level){
+        System.out.println(userName);
         deleteScores("src/main/resources/Misc/roundScore.csv");
         Stage game = new Stage();
         background = new MyStage();

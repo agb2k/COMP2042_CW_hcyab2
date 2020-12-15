@@ -22,6 +22,7 @@ public class BackgroundImage extends Actor{
 	 * Used to display background image of game
 	 * @param imageLink Background image
 	 */
+
 //	700, 857
 	public BackgroundImage(String imageLink) {
 		setImage(new Image(imageLink, 0, 857, true, true));

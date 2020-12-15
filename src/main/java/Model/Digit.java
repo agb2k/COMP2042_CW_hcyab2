@@ -32,5 +32,6 @@ public class Digit extends Actor{
 		setX(x);
 		setY(y);
 	}
+
 	
 }

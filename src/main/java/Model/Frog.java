@@ -194,6 +194,7 @@ public class Frog extends Actor{
 			}
 			else{
 				if (noMove) {
+					//Do Nothing
 				} else {
 					if (event.getCode() == KeyCode.W) {
 						if (getY() < w) {
@@ -247,8 +248,19 @@ public class Frog extends Actor{
 		if (getIntersectingObjects(Minotaur.class).size() >= 1) {
 			carDeath = true;
 		}
+		if (getIntersectingObjects(Skeleton.class).size() >= 1) {
+			carDeath = true;
+		}
+		if (getIntersectingObjects(Dragon.class).size() >= 1) {
+			carDeath = true;
+		}
 		if (getIntersectingObjects(PowerUp.class).size() >= 1) {
-			Game.setPowerUp(true);
+			new Timer().schedule(new TimerTask(){
+				@Override
+				public void run(){
+					Game.setPowerUp(true);
+				}
+			},50);
 			new Timer().schedule(new TimerTask(){
 				@Override
 				public void run(){
@@ -543,6 +555,7 @@ public class Frog extends Actor{
 		return false;
 		
 	}
+
 
 	/**
 	 * Getter for lives

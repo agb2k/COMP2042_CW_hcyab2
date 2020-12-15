@@ -15,6 +15,7 @@ public class Minotaur extends Actor {
 	private final Image min5;
 	private final Image min6;
 	private final Image min7;
+	private final Image min8;
 
 	/**
 	 * The actions of the obstacles(vehicles) required for the game
@@ -26,32 +27,36 @@ public class Minotaur extends Actor {
 
 		}
 		else {
-			if (now/90000000  % 7 == 0) {
+			if (now/90000000  % 8 == 0) {
 				setImage(min1);
 
 			}
-			else if (now/90000000 % 7 == 1) {
+			else if (now/90000000 % 8 == 1) {
 				setImage(min2);
 
 			}
-			else if (now/90000000 %7 == 2) {
+			else if (now/90000000 %8 == 2) {
 				setImage(min3);
 
 			}
-			else if (now/90000000 %7 == 3) {
+			else if (now/90000000 %8 == 3) {
 				setImage(min4);
 
 			}
-			else if (now/90000000 %7 == 4) {
+			else if (now/90000000 %8 == 4) {
 				setImage(min5);
 
 			}
-			else if (now/90000000 %7 == 5) {
+			else if (now/90000000 %8 == 5) {
 				setImage(min6);
 
 			}
-			else if (now/90000000 %7 == 6) {
+			else if (now/90000000 %8 == 6) {
 				setImage(min7);
+
+			}
+			else if (now/90000000 %8 == 7) {
+				setImage(min8);
 
 			}
 
@@ -73,13 +78,14 @@ public class Minotaur extends Actor {
 	 * @param h Height of obstacle
 	 */
 	public Minotaur(int xpos, int ypos, double s, int w, int h) {
-		min1 = new Image("file:src/main/resources/Images/Min1.png", w, h, true, true);
-		min2 = new Image("file:src/main/resources/Images/Min2.png", w, h, true, true);
-		min3 = new Image("file:src/main/resources/Images/Min3.png", w, h, true, true);
-		min4 = new Image("file:src/main/resources/Images/Min4.png", w, h, true, true);
-		min5 = new Image("file:src/main/resources/Images/Min5.png", w, h, true, true);
-		min6 = new Image("file:src/main/resources/Images/Min6.png", w, h, true, true);
-		min7 = new Image("file:src/main/resources/Images/Min7.png", w, h, true, true);
+		min1 = new Image("file:src/main/resources/Images/MinFlip1.png", w, h, true, true);
+		min2 = new Image("file:src/main/resources/Images/MinFlip2.png", w, h, true, true);
+		min3 = new Image("file:src/main/resources/Images/MinFlip3.png", w, h, true, true);
+		min4 = new Image("file:src/main/resources/Images/MinFlip4.png", w, h, true, true);
+		min5 = new Image("file:src/main/resources/Images/MinFlip5.png", w, h, true, true);
+		min6 = new Image("file:src/main/resources/Images/MinFlip6.png", w, h, true, true);
+		min7 = new Image("file:src/main/resources/Images/MinFlip7.png", w, h, true, true);
+		min8 = new Image("file:src/main/resources/Images/MinFlip8.png", w, h, true, true);
 		setX(xpos);
 		setY(ypos);
 		speed = s;

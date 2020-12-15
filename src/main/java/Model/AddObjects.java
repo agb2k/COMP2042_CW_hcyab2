@@ -19,8 +19,12 @@ public class AddObjects {
         //1-3
         speedFactor = 0.2 + (level*0.2);
         //4-7
-        if (3<level && level<8){
-            speedFactor = level/4;
+        if (level>=4 && level<=7){
+            speedFactor = level/5;
+        }
+        //8-10
+        if (level>=8 && level<=10){
+            speedFactor = ((level-1)/5)+(0.2*(level-7));
         }
         addBackgroundImg(background);
         addLogs(background);
@@ -53,26 +57,50 @@ public class AddObjects {
          */
 //        addLives(background, frog);
 
-        if(level == 1 || level == 2 || level == 3){
+        if(level == 1 || level == 2){
             addCarsEasy(background);
         }
+        else if(level == 3){
+            addCarsStandard(background);
+        }
         else if(level == 4 || level == 5){
-            addCars(background);
+            addCarsMedium(background);
             addMinotaurs(background);
+            background.add(new PowerUp( 40,0.75*speedFactor));
+        }else if(level == 6 || level == 7 || level == 8){
+            addCarsMedium(background);
+            addMinotaurs(background);
+            addDragons(background);
+            background.add(new PowerUp( 40,0.75*speedFactor));
+        } else if(level == 9 || level == 10){
+            addCarsHard(background);
+            addSkeletons(background);
+            addMinotaurs(background);
+            addDragons(background);
             background.add(new PowerUp( 40,0.75*speedFactor));
         }
 
         System.out.println(speedFactor);
     }
 
+
+    private static void addSkeletons(MyStage background){
+        background.add(new Skeleton(100, 590, -1*speedFactor, 70, 70));
+        background.add(new Skeleton(250, 590, -1*speedFactor, 70, 70));
+        background.add(new Skeleton(400, 590, -1*speedFactor, 70, 70));
+        background.add(new Skeleton(550, 590, -1*speedFactor, 70, 70));
+    }
+    private static void addDragons(MyStage background){
+        background.add(new Dragon( 100, 425, 1*speedFactor, 70, 70));
+        background.add(new Dragon( 550, 425, 1*speedFactor, 70, 70));
+    }
     /**
      * Adds Minotaurs
      */
     private static void addMinotaurs(MyStage background){
-        background.add(new Minotaur(100, 480, 2.5*speedFactor, 70, 70));
-        background.add(new Minotaur(250, 480, 2.5*speedFactor, 70, 70));
-        background.add(new Minotaur(400, 480, 2.5*speedFactor, 70, 70));
-        background.add(new Minotaur(550, 480, 2.5*speedFactor, 70, 70));
+        background.add(new Minotaur(100, 480, -2*speedFactor, 70, 70));
+        background.add(new Minotaur(300, 480, -2*speedFactor, 70, 70));
+        background.add(new Minotaur(500, 480, -2*speedFactor, 70, 70));
     }
 
     /**
@@ -100,7 +128,15 @@ public class AddObjects {
      * Adds the obstacles (vehicles) to the game
      * @param background Background to add vehicles/obstacles
      */
-    private static void addCars(MyStage background) {
+    private static void addCarsHard(MyStage background) {
+        background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 0, 649, 1*speedFactor, 120, 120));
+        background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 300, 649, 1*speedFactor, 120, 120));
+        background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 600, 649, 1*speedFactor, 120, 120));
+        background.add(new Obstacle("file:src/main/resources/Images/truck2Right.png", 0, 540, 1*speedFactor, 200, 200));
+        background.add(new Obstacle("file:src/main/resources/Images/truck2Right.png", 500, 540, 1*speedFactor, 200, 200));
+    }
+
+    private static void addCarsMedium(MyStage background) {
         background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 0, 649, 1*speedFactor, 120, 120));
         background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 300, 649, 1*speedFactor, 120, 120));
         background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 600, 649, 1*speedFactor, 120, 120));
@@ -112,18 +148,30 @@ public class AddObjects {
         background.add(new Obstacle("file:src/main/resources/Images/truck2Right.png", 500, 540, 1*speedFactor, 200, 200));
     }
 
+    public static void addCarsStandard(MyStage background){
+        background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 0, 649, 1*speedFactor, 120, 120));
+        background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 300, 649, 1*speedFactor, 120, 120));
+        background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 600, 649, 1*speedFactor, 120, 120));
+        background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 100, 597, -1*speedFactor, 50, 50));
+        background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 250, 597, -1*speedFactor, 50, 50));
+        background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 400, 597, -1*speedFactor, 50, 50));
+        background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 550, 597, -1*speedFactor, 50, 50));
+        background.add(new Obstacle("file:src/main/resources/Images/truck2Right.png", 0, 540, 1*speedFactor, 200, 200));
+        background.add(new Obstacle("file:src/main/resources/Images/truck2Right.png", 500, 540, 1*speedFactor, 200, 200));
+        background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 500, 490, -5*speedFactor, 50, 50));
+    }
+
     /**
      * Adds the easier obstacles (vehicles) to the game
      * @param background Background to add vehicles/obstacles
      */
     private static void addCarsEasy(MyStage background) {
-        background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 0, 649, 1*speedFactor, 120, 120));
         background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 300, 649, 1*speedFactor, 120, 120));
         background.add(new Obstacle("file:src/main/resources/Images/truck1"+"Right.png", 600, 649, 1*speedFactor, 120, 120));
         background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 100, 597, -1*speedFactor, 50, 50));
         background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 400, 597, -1*speedFactor, 50, 50));
         background.add(new Obstacle("file:src/main/resources/Images/truck2Right.png", 500, 540, 1*speedFactor, 200, 200));
-
+        background.add(new Obstacle("file:src/main/resources/Images/car1Left.png", 500, 490, -5*speedFactor, 50, 50));
     }
 
     /**
