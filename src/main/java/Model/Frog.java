@@ -142,68 +142,14 @@ public class Frog extends Actor{
 	 */
 	private void buttonClickCheck() {
 		setOnKeyPressed(event -> {
-			if(Game.getPauseGame()){
+			if(Game.getPauseGame() || noMove){
 				//Do Nothing
 			}
 			else{
-				if (noMove) {
-
-				} else {
-					if (second) {
-						if (event.getCode() == KeyCode.W) {
-							move(0, -movement);
-							changeScore = false;
-							setImage(imgW1);
-							second = false;
-						} else if (event.getCode() == KeyCode.A) {
-							move(-movementX, 0);
-							setImage(imgA1);
-							second = false;
-						} else if (event.getCode() == KeyCode.S) {
-							move(0, movement);
-							setImage(imgS1);
-							second = false;
-						} else if (event.getCode() == KeyCode.D) {
-							move(movementX, 0);
-							setImage(imgD1);
-							second = false;
-						}
-					} else if (event.getCode() == KeyCode.W) {
-						move(0, -movement);
-						setImage(imgW2);
-						second = true;
-					} else if (event.getCode() == KeyCode.A) {
-						move(-movementX, 0);
-						setImage(imgA2);
-						second = true;
-					} else if (event.getCode() == KeyCode.S) {
-						move(0, movement);
-						setImage(imgS2);
-						second = true;
-					} else if (event.getCode() == KeyCode.D) {
-						move(movementX, 0);
-						setImage(imgD2);
-						second = true;
-					}
-				}
-			}
-		});
-		setOnKeyReleased(event -> {
-			if(Game.getPauseGame()){
-				//Do nothing
-			}
-			else{
-				if (noMove) {
-					//Do Nothing
-				} else {
+				if (second) {
 					if (event.getCode() == KeyCode.W) {
-						if (getY() < w) {
-							changeScore = true;
-							w = getY();
-							points += 10;
-							pointTally += 10;
-						}
 						move(0, -movement);
+						changeScore = false;
 						setImage(imgW1);
 						second = false;
 					} else if (event.getCode() == KeyCode.A) {
@@ -219,6 +165,52 @@ public class Frog extends Actor{
 						setImage(imgD1);
 						second = false;
 					}
+				} else if (event.getCode() == KeyCode.W) {
+					move(0, -movement);
+					setImage(imgW2);
+					second = true;
+				} else if (event.getCode() == KeyCode.A) {
+					move(-movementX, 0);
+					setImage(imgA2);
+					second = true;
+				} else if (event.getCode() == KeyCode.S) {
+					move(0, movement);
+					setImage(imgS2);
+					second = true;
+				} else if (event.getCode() == KeyCode.D) {
+					move(movementX, 0);
+					setImage(imgD2);
+					second = true;
+				}
+			}
+		});
+		setOnKeyReleased(event -> {
+			if(Game.getPauseGame() || noMove){
+				//Do nothing
+			}
+			else{
+				if (event.getCode() == KeyCode.W) {
+					if (getY() < w) {
+						changeScore = true;
+						w = getY();
+						points += 10;
+						pointTally += 10;
+					}
+					move(0, -movement);
+					setImage(imgW1);
+					second = false;
+				} else if (event.getCode() == KeyCode.A) {
+					move(-movementX, 0);
+					setImage(imgA1);
+					second = false;
+				} else if (event.getCode() == KeyCode.S) {
+					move(0, movement);
+					setImage(imgS1);
+					second = false;
+				} else if (event.getCode() == KeyCode.D) {
+					move(movementX, 0);
+					setImage(imgD1);
+					second = false;
 				}
 			}
 		});
