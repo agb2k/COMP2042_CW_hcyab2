@@ -36,3 +36,5 @@ OWA: hcyab2
 - Utilized Maven to handle dependencies
 - Used IntelliJ to create a class diagram
       
+![img.png](img.png)
+![img_1.png](img_1.png)
