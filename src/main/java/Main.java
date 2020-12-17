@@ -13,6 +13,11 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 	private Scene scene1;
+
+	/**
+	 * Main method
+	 * @param args String array
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

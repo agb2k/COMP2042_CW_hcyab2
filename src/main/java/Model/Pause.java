@@ -2,6 +2,9 @@ package Model;
 
 import javafx.scene.image.Image;
 
+/**
+ * Pause class for the pause button in the game
+ */
 public class Pause extends Actor{
     private final Image pause;
     private final Image play;

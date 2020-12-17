@@ -13,7 +13,9 @@ OWA: hcyab2
 - Broke up classes into separate classes to give each class unique functionality
     - Created the Game class which focuses on initializing the game itself from the Main class
     - Created the AddObjects class which focuses on adding objects to the game from the Main class
-- Renamed the Animal class to Frog for easier understanding
+- Renamed classes for easier understanding
+  - Changed the Animal class to Frog
+  - Changed the Obstacle class to Vehicles
 - Added new classes to provide new functionality
     - The Highscore class helps with the functionality of the newly added high score menu
     - The Mute class helps add the option to mute the game with the click of a button
@@ -23,11 +25,12 @@ OWA: hcyab2
     - The Skeleton, Dragon and Minotaur class to add new characters to the game
     - The PowerUp class to add a power up orb to the game
     - The RoundScore class was made to help with the functionality of the newly created round score pop-up menu
-    - ~~The lives class shows the number of lives left for the frog in the game itself~~
+    - The lives class shows the number of lives left for the frog in the game itself
 - Converted many blocks of code into their own methods to improve readability
 - Improved encapsulation of data by making the majority of the data-types private while using required getters and setters to protect data
 - Added a new background and adjusted it to make the game look nicer
 - Created a fully functioning start menu, info menu, high score menu and high score (round score) pop-up using FXML, CSS and Scenebuilder
+- The factory design pattern has been utilized to add actors to the AddObjects class to enhance maintainability
 - The code has been organized to adhere to the MVC Pattern making the project cleaner and easier to understand
 - Added a permanent high score list which stores data to Highscore.csv to be used in the High score menu created with FXML and Scenebuilder
 - 10 levels with different characters, speed and arrangements have been created to make the game more interesting
@@ -36,5 +39,10 @@ OWA: hcyab2
 - Utilized Maven to handle dependencies
 - Used IntelliJ to create a class diagram
       
-![img.png](img.png)
-![img_1.png](img_1.png)
+
+- Main Menu:
+![Main Menu](img_3.png)
+
+
+- Level 10 of the Game:
+![Level 10](img_2.png)

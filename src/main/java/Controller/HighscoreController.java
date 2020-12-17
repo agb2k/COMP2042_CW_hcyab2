@@ -29,10 +29,29 @@ import java.util.Scanner;
 public class HighscoreController implements Initializable {
 
 
+    /**
+     * Highscore table
+     */
     public TableView<Highscore> table;
+
+    /**
+     * Name column of table
+     */
     public TableColumn<Highscore, String> nameColumn;
+
+    /**
+     * Score column of table
+     */
     public TableColumn<Highscore, Integer> scoreColumn;
+
+    /**
+     * Level column of table
+     */
     public TableColumn<Highscore, Integer> levelColumn;
+
+    /**
+     * Button to go back to main menu
+     */
     public Button backToMainMenu;
 
     final String fileName = "src/main/resources/Misc/Highscore.csv";

@@ -38,7 +38,7 @@ public class Game{
         Scene scene2  = new Scene(background,600,800);
         background.autosize();
 
-        AddObjects.game1(background, level);
+        AddObjects.AddGameObjects(background, level);
         /**
          * Adds the frog to the game
          */
@@ -85,6 +85,8 @@ public class Game{
     /**
      * Changes the frogs points and stops the game at appropriate times
      * @param userName Name of player
+     * @param level Designated level to play on
+     * @param stage Designated stage for game to take place
      */
     public void createTimer(String userName, Stage stage, int level) {
         timer = new AnimationTimer() {
@@ -111,7 +113,7 @@ public class Game{
 
                     finalStop(stage);
                 }
-                if (frog.isUserStop()){
+                if (Frog.isUserStop()){
 
                     System.out.print("USER STOPPED:");
                     background.stopMusic();
@@ -123,7 +125,7 @@ public class Game{
 
                     finalStop(stage);
 
-                    frog.setUserStop(false);
+                    Frog.setUserStop(false);
 
                 }
             }
@@ -178,7 +180,9 @@ public class Game{
 
     /**
      * Starts up various functions for the beginning of the game
-     * @param userName name of Player
+     * @param userName Name of Player
+     * @param level Level chosen by player
+     * @param stage Chosen stage in which game stakes place
      */
     public void start(String userName, Stage stage, int level) {
 		background.playMusic();
@@ -188,6 +192,7 @@ public class Game{
 
     /**
      * Stops the timer function for the end of the game
+     * @param stage Stage where game is taking place
      */
     public static void finalStop(Stage stage) {
         timer.stop();
@@ -220,7 +225,7 @@ public class Game{
 
     /**
      * Getter for pauseGame boolean
-     * @return pauseGame
+     * @return pauseGame boolean
      */
     public static boolean getPauseGame() {
         return pauseGame;
@@ -234,10 +239,18 @@ public class Game{
         Game.pauseGame = pauseGame;
     }
 
+    /**
+     * Getter for powerUp boolean
+     * @return powerUp boolean
+     */
     public static boolean isPowerUp() {
         return powerUp;
     }
 
+    /**
+     * Setter for powerUp boolean
+     * @param powerUp Either true or false should be assigned
+     */
     public static void setPowerUp(boolean powerUp) {
         Game.powerUp = powerUp;
     }

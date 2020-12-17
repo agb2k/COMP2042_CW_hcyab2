@@ -2,6 +2,9 @@ package Model;
 
 import javafx.scene.image.Image;
 
+/**
+ * Mute class used to create a mute button in the game
+ */
 public class Mute extends Actor{
     private final Image mute;
     private final Image unmute;

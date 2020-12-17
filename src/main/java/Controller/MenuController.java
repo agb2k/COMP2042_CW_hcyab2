@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.Frog;
 import Model.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,8 +15,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -48,7 +45,7 @@ public class MenuController implements Initializable {
 
     private MediaPlayer mediaPlayer;
 
-    ObservableList list = FXCollections.observableArrayList();
+    final ObservableList list = FXCollections.observableArrayList();
 
 
     /**
@@ -63,6 +60,9 @@ public class MenuController implements Initializable {
         System.out.println("View is now loaded!");
     }
 
+    /**
+     * Plays music
+     */
     public void playMusic() {
         String musicFile = "src/main/resources/Music/Frogger Main Song Theme (loop).mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
@@ -125,39 +125,9 @@ public class MenuController implements Initializable {
         if(username == null){
             //Do Nothing
         }else {
-            if((levelSelector.getValue()) == "Level 1"){
-                new Game(username, 1);
-            }
-            else if((levelSelector.getValue()) == "Level 2"){
-                new Game(username, 2);
-            }
-            else if((levelSelector.getValue()) == "Level 3"){
-                new Game(username, 3);
-            }
-            else if((levelSelector.getValue()) == "Level 4"){
-                new Game(username, 4);
-            }
-            else if((levelSelector.getValue()) == "Level 5"){
-                new Game(username, 5);
-            }
-            else if((levelSelector.getValue()) == "Level 6"){
-                new Game(username, 6);
-            }
-            else if((levelSelector.getValue()) == "Level 7"){
-                new Game(username, 7);
-            }
-            else if((levelSelector.getValue()) == "Level 8"){
-                new Game(username, 8);
-            }
-            else if((levelSelector.getValue()) == "Level 9"){
-                new Game(username, 9);
-            }
-            else if((levelSelector.getValue()) == "Level 10"){
-                new Game(username, 10);
-            }
-            else {
-                System.out.println("Choose another level");
-            }
+            String levelStr = levelSelector.getValue();
+            int levelNum = Integer.parseInt(levelStr.replaceAll("[^0-9]", ""));
+            new Game(username, levelNum);
         }
 
     }

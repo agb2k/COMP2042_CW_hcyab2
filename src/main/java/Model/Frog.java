@@ -117,6 +117,11 @@ public class Frog extends Actor{
 	private static boolean userStop = false;
 
 	/**
+	 * Boolean to see if life changed
+	 */
+	private static boolean changeLife = false;
+
+	/**
 	 * <pre>
 	 * Initializes the frog character to move and switch to the respective image when particular buttons are clicked
 	 * Also, increases the score whenever moved upwards
@@ -234,7 +239,7 @@ public class Frog extends Actor{
 	 * Checks if the frog collides with any of the other objects and performs the corresponding tasks
 	 */
 	private void collision() {
-		if (getIntersectingObjects(Obstacle.class).size() >= 1) {
+		if (getIntersectingObjects(Vehicles.class).size() >= 1) {
 			carDeath = true;
 		}
 		if (getIntersectingObjects(Minotaur.class).size() >= 1) {
@@ -482,7 +487,7 @@ public class Frog extends Actor{
 	 * Alerts when frog dies
 	 */
 	public void deadScoreAlert(){
-
+		changeLife = true;
 		if(pointTally<0){
 			pointTally = 0;
 		}
@@ -501,6 +506,7 @@ public class Frog extends Actor{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+
 	}
 
 	/**
@@ -557,11 +563,35 @@ public class Frog extends Actor{
 		return lives;
 	}
 
+	/**
+	 * Getter for userStop
+	 * @return userStop boolean value
+	 */
 	public static boolean isUserStop() {
 		return userStop;
 	}
 
+	/**
+	 * Setter for userStop
+	 * @param userStop New boolean value to assign to userStop
+	 */
 	public static void setUserStop(boolean userStop) {
 		Frog.userStop = userStop;
+	}
+
+	/**
+	 * Getter for userStop
+	 * @return changeLife boolean value
+	 */
+	public static boolean isChangeLife() {
+		return changeLife;
+	}
+
+	/**
+	 * Setter for changeLife
+	 * @param changeLife New boolean value to assign to changeLife
+	 */
+	public static void setChangeLife(boolean changeLife) {
+		Frog.changeLife = changeLife;
 	}
 }

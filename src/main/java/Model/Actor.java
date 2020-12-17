@@ -26,10 +26,17 @@ public abstract class Actor extends ImageView{
         return (World) getParent();
     }
 
+    /**
+     * Gets width of Actor
+     * @return width
+     */
     public double getWidth() {
         return this.getBoundsInLocal().getWidth();
     }
-
+    /**
+     * Gets height of Actor
+     * @return height
+     */
     public double getHeight() {
         return this.getBoundsInLocal().getHeight();
     }

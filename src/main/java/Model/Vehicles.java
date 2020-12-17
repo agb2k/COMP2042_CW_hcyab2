@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
  * Similarly to log class, this class inherits from the Actor class and is used to create obstacles in the game
  */
 
-public class Obstacle extends Actor {
+public class Vehicles extends Actor {
 	private final double speed;
 
 	/**
@@ -36,7 +36,7 @@ public class Obstacle extends Actor {
 	 * @param w Width of obstacle
 	 * @param h Height of obstacle
 	 */
-	public Obstacle(String imageLink, int xpos, int ypos, double s, int w, int h) {
+	public Vehicles(String imageLink, int xpos, int ypos, double s, int w, int h) {
 		setImage(new Image(imageLink, w,h, true, true));
 		setX(xpos);
 		setY(ypos);

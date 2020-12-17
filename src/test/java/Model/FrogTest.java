@@ -19,6 +19,15 @@ class FrogTest {
     }
 
     /**
+     * Used to test if the userStop getter and setter functions properly
+     */
+    @Test
+    public void changeLifeSetterGetterTest(){
+        Frog.setChangeLife(true);
+        assertEquals(true, Frog.isChangeLife());
+    }
+
+    /**
      * Used to test if the round score can be saved
      * @throws FileNotFoundException Error thrown when file not found
      */

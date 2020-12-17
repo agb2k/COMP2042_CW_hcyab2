@@ -7,7 +7,9 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * The world class used to set up the world of the game where actors are added
+ */
 public abstract class World extends Pane {
     private AnimationTimer timer;
 

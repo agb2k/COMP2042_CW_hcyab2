@@ -17,7 +17,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-
+/**
+ * Controller for the RoundScore pop-up
+ */
 public class RoundScoreController implements Initializable {
 
     @FXML

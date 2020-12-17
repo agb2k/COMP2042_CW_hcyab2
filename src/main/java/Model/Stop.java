@@ -6,6 +6,9 @@ import javafx.scene.image.Image;
 import javafx.stage.StageStyle;
 import java.util.Optional;
 
+/**
+ * Stop class for the stop button in the game
+ */
 public class Stop extends Actor{
     private final Image stop;
     @Override

@@ -23,11 +23,11 @@ public class PowerUp extends Actor{
 	private final Image im4;
 	private final Image im5;
 	private final Image im6;
-	private double speed;
+	private final double speed;
 	private boolean go = false;
-	private int xCoordIndex;
+	private final int xCoordIndex;
 	private int yCoordIndex;
-	private long delay;
+	private final long delay;
 	@Override
 	public void act(long now) {
 		if(Game.getPauseGame() || Game.isPowerUp()){
@@ -66,7 +66,8 @@ public class PowerUp extends Actor{
 
 	/**
 	 * Grabs the digit you want and places it
-	 * @param dim height and width of digit
+	 * @param dim Height and width of digit
+	 * @param s Speed required
 	 */
 
 	public PowerUp(int dim, double s) {
@@ -89,7 +90,7 @@ public class PowerUp extends Actor{
 		yCoordList.add(329);
 
 		Random rn = new Random();
-		xCoordIndex = rn.nextInt(3 - 0 + 1) + 0;
+		xCoordIndex = rn.nextInt(4);
 		if(xCoordIndex == 0 || xCoordIndex == 2){
 			yCoordIndex = 0;
 		}else if(xCoordIndex == 1 || xCoordIndex == 3){

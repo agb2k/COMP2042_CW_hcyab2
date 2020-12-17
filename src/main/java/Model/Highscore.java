@@ -46,6 +46,7 @@ public class Highscore {
 
     /**
      * Getter for level column
+     * @return LevelColumn
      */
     public int getLevelColumn() {
         return levelColumn;
@@ -63,6 +64,7 @@ public class Highscore {
      * Function to assign values to the high score menu
      * @param nameColumn name of player
      * @param ScoreColumn score of player
+     * @param levelColumn chosen level by player
      */
     public Highscore(String nameColumn, int levelColumn, int ScoreColumn){
         this.ScoreColumn = ScoreColumn;
