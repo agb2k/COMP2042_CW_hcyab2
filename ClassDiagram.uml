@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="982.0" y="307.0">Model.Util.Highscore</node>
+    <node x="180.0" y="387.0">Controller.MenuController</node>
+    <node x="1490.0" y="307.0">Model.Util.ActorFactory</node>
+    <node x="0.0" y="198.0">Model.Actor.BackgroundImage</node>
+    <node x="668.0" y="164.0">Model.Actor.Frog</node>
+    <node x="296.0" y="198.0">Model.Actor.Skeleton</node>
+    <node x="1033.0" y="198.0">Model.Actor.Turtle</node>
+    <node x="792.0" y="186.0">Model.Actor.Log</node>
+    <node x="360.0" y="387.0">Controller.HighscoreController</node>
+    <node x="1166.0" y="307.0">Model.Util.RoundScore</node>
+    <node x="1389.0" y="186.0">Model.Actor.End</node>
+    <node x="1353.0" y="307.0">Model.Game</node>
+    <node x="833.0" y="387.0">Model.World.MyStage</node>
+    <node x="1679.0" y="307.0">Model.Util.AddObjects</node>
+    <node x="1249.0" y="186.0">Model.Actor.WetTurtle</node>
+    <node x="1537.0" y="198.0">Model.Actor.Digit</node>
+    <node x="0.0" y="387.0">Controller.InfoController</node>
+    <node x="1645.0" y="198.0">Model.Actor.Minotaur</node>
+    <node x="1877.0" y="198.0">Model.Actor.Dragon</node>
+    <node x="841.0" y="307.0">Model.World.World</node>
+    <node x="909.0" y="198.0">Model.Actor.PowerUp</node>
+    <node x="428.0" y="198.0">Model.Actor.Lives</node>
+    <node x="188.0" y="198.0">Model.Actor.Pause</node>
+    <node x="1149.0" y="198.0">Model.Actor.Stop</node>
+    <node x="971.5" y="0.0">Model.Actor.Actor</node>
+    <node x="536.0" y="198.0">Model.Actor.Vehicles</node>
+    <node x="296.0" y="307.0">javafx.fxml</node>
+    <node x="1777.0" y="198.0">Model.Actor.Mute</node>
+    <node x="580.0" y="387.0">Controller.RoundScoreController</node>
+    <node x="1852.0" y="307.0">Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Model.Actor.Skeleton" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="352.0" y="94.0" />
+      <point x="986.96875" y="94.0" />
+      <point x="-34.03125" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.PowerUp" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="961.0" y="144.0" />
+      <point x="1017.90625" y="144.0" />
+      <point x="-3.09375" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.Log" target="Model.Actor.Actor">
+      <point x="0.0" y="-27.0" />
+      <point x="840.5" y="134.0" />
+      <point x="1011.71875" y="134.0" />
+      <point x="-9.28125" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.Frog" target="Model.Actor.Actor">
+      <point x="0.0" y="-49.0" />
+      <point x="720.0" y="124.0" />
+      <point x="1005.53125" y="124.0" />
+      <point x="-15.46875" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.Minotaur" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="1701.0" y="94.0" />
+      <point x="1055.03125" y="94.0" />
+      <point x="34.03125" y="27.0" />
+    </edge>
+    <edge source="Controller.HighscoreController" target="javafx.fxml">
+      <point x="0.0" y="-15.0" />
+      <point x="460.0" y="367.0" />
+      <point x="376.0" y="367.0" />
+      <point x="16.0" y="15.0" />
+    </edge>
+    <edge source="Controller.MenuController" target="javafx.fxml">
+      <point x="0.0" y="-15.0" />
+      <point x="260.0" y="367.0" />
+      <point x="344.0" y="367.0" />
+      <point x="-16.0" y="15.0" />
+    </edge>
+    <edge source="Model.Actor.Dragon" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="1925.0" y="74.0" />
+      <point x="1067.40625" y="74.0" />
+      <point x="46.40625" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.Lives" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="472.0" y="104.0" />
+      <point x="993.15625" y="104.0" />
+      <point x="-27.84375" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.BackgroundImage" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="84.0" y="74.0" />
+      <point x="974.59375" y="74.0" />
+      <point x="-46.40625" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.Digit" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="1581.0" y="104.0" />
+      <point x="1048.84375" y="104.0" />
+      <point x="27.84375" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.Pause" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="232.0" y="84.0" />
+      <point x="980.78125" y="84.0" />
+      <point x="-40.21875" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.Vehicles" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="592.0" y="114.0" />
+      <point x="999.34375" y="114.0" />
+      <point x="-21.65625" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.End" target="Model.Actor.Actor">
+      <point x="0.0" y="-27.0" />
+      <point x="1453.0" y="114.0" />
+      <point x="1042.65625" y="114.0" />
+      <point x="21.65625" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.WetTurtle" target="Model.Actor.Actor">
+      <point x="0.0" y="-27.0" />
+      <point x="1309.0" y="124.0" />
+      <point x="1036.46875" y="124.0" />
+      <point x="15.46875" y="27.0" />
+    </edge>
+    <edge source="Controller.RoundScoreController" target="javafx.fxml">
+      <point x="0.0" y="-15.0" />
+      <point x="684.0" y="357.0" />
+      <point x="408.0" y="357.0" />
+      <point x="48.0" y="15.0" />
+    </edge>
+    <edge source="Model.Actor.Stop" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="1189.0" y="134.0" />
+      <point x="1030.28125" y="134.0" />
+      <point x="9.28125" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.Mute" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="1817.0" y="84.0" />
+      <point x="1061.21875" y="84.0" />
+      <point x="40.21875" y="27.0" />
+    </edge>
+    <edge source="Model.Actor.Turtle" target="Model.Actor.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="1081.0" y="144.0" />
+      <point x="1024.09375" y="144.0" />
+      <point x="3.09375" y="27.0" />
+    </edge>
+    <edge source="Model.World.MyStage" target="Model.World.World">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Controller.InfoController" target="javafx.fxml">
+      <point x="0.0" y="-15.0" />
+      <point x="80.0" y="357.0" />
+      <point x="312.0" y="357.0" />
+      <point x="-48.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.4746613146011039" x="986.5" y="208.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

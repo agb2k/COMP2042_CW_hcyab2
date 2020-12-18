@@ -13,7 +13,7 @@ OWA: hcyab2
 ## Key Changes Made for Maintenance and Extension
 
 - Configured the file for Github to regularly push updated code to the respective repository for easier maintenance
-  - On request, users can be added as a collaborator to view the repository
+  - Used .gitignore file to avoid clutter in the repository  - On request, users can be added as a collaborator to view the repository
 - Added JavaDocs for easier understanding
 - The classes have been repackaged to make it easier to understand
 - Broke up classes into separate classes to give each class unique functionality
@@ -61,3 +61,23 @@ OWA: hcyab2
 - Class Diagram:
 
 ![img.png](img.png)
+
+
+- Github:
+
+![img_1.png](img_1.png)
+
+
+![img_4.png](img_4.png)
+
+
+![img_5.png](img_5.png)
+
+
+![img_6.png](img_6.png)
+
+
+![img_7.png](img_7.png)
+
+
+![img_8.png](img_8.png)
