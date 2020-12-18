@@ -102,11 +102,6 @@ public class Frog extends Actor{
 	private int lives = 5;
 
 	/**
-	 * Array list of end points
-	 */
-	private ArrayList<End> inter = new ArrayList<>();
-
-	/**
 	 * String placeholder
 	 */
 	private String text = "";
@@ -120,6 +115,10 @@ public class Frog extends Actor{
 	 * Boolean to see if life changed
 	 */
 	private static boolean changeLife = false;
+	/**
+	 * Boolean to see if it's the first powerUp colission
+	 */
+	private static boolean first = true;
 
 	/**
 	 * <pre>
@@ -228,10 +227,7 @@ public class Frog extends Actor{
 	@Override
 	public void act(long now) {
 		outOfBounds();
-
-		carDeath(now);
-		waterDeath(now);
-
+		Death(now);
 		collision();
 	}
 
@@ -251,7 +247,9 @@ public class Frog extends Actor{
 		if (getIntersectingObjects(Dragon.class).size() >= 1) {
 			carDeath = true;
 		}
-		if (getIntersectingObjects(PowerUp.class).size() >= 1) {
+		if (getIntersectingObjects(PowerUp.class).size() >= 1 && first) {
+			first = false;
+			System.out.println("powerUp collision taken place");
 			new Timer().schedule(new TimerTask(){
 				@Override
 				public void run(){
@@ -266,11 +264,12 @@ public class Frog extends Actor{
 			},5000);
 		}
 
+		/**
+		 * Array list of end points
+		 */
+		ArrayList<End> inter = new ArrayList<>();
 		if(Game.isPowerUp()){
-			if (getIntersectingObjects(Log.class).size() >= 1 && !noMove) {
-				move(0,0);
-			}
-			else if (getIntersectingObjects(Turtle.class).size() >= 1 && !noMove) {
+			if ((getIntersectingObjects(Log.class).size() >= 1 || getIntersectingObjects(Turtle.class).size() >= 1) && !noMove) {
 				move(0,0);
 			}
 			else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
@@ -299,7 +298,8 @@ public class Frog extends Actor{
 			else if (getY()<413){
 				waterDeath = true;
 			}
-		}else{
+		}
+		else{
 			if (getIntersectingObjects(Log.class).size() >= 1 && !noMove) {
 				if(getIntersectingObjects(Log.class).get(0).getLeft())
 					move(-2*AddObjects.getSpeedFactor(),0);
@@ -358,31 +358,39 @@ public class Frog extends Actor{
 
 
 	/**
-	 * The actions involved when the frog dies due to water
+	 * The actions involved when the frog dies
 	 * @param now Time of the current frame
 	 */
-	private void waterDeath(long now) {
-		if (waterDeath) {
+	private void Death(long now){
+		if(waterDeath || carDeath){
 			noMove = true;
+			String str = null;
+			if(waterDeath){
+				str = "water";
+			}else if(carDeath){
+				str = "car";
+			}
+
 			if (now % 11 ==0) {
 				carD++;
 			}
 			if (carD==1) {
-				setImage(new Image("file:src/main/resources/Images/waterdeath1.png", imgSize,imgSize , true, true));
+				setImage(new Image("file:src/main/resources/Images/"+str+"death1.png", imgSize,imgSize , true, true));
 			}
 			if (carD==2) {
-				setImage(new Image("file:src/main/resources/Images/waterdeath2.png", imgSize,imgSize , true, true));
+				setImage(new Image("file:src/main/resources/Images/"+str+"death2.png", imgSize,imgSize , true, true));
 			}
 			if (carD==3) {
-				setImage(new Image("file:src/main/resources/Images/waterdeath3.png", imgSize,imgSize , true, true));
+				setImage(new Image("file:src/main/resources/Images/"+str+"death3.png", imgSize,imgSize , true, true));
 			}
 			if (carD == 4) {
-				setImage(new Image("file:src/main/resources/Images/waterdeath4.png", imgSize,imgSize , true, true));
+				setImage(new Image("file:src/main/resources/Images/"+str+"death4.png", imgSize,imgSize , true, true));
 			}
 			if (carD == 5) {
 				setX(300);
 				setY(679.8+movement);
 				waterDeath = false;
+				carDeath = false;
 				carD = 0;
 				setImage(new Image("file:src/main/resources/Images/froggerUp.png", imgSize, imgSize, true, true));
 				noMove = false;
@@ -402,50 +410,6 @@ public class Frog extends Actor{
 			}
 		}
 	}
-
-	/**
-	 * The actions involved when the frog dies due to vehicles
-	 * @param now Time of the current frame
-	 */
-	private void carDeath(long now) {
-		if (carDeath) {
-			noMove = true;
-			if (now % 11 ==0) {
-				carD++;
-			}
-			if (carD==1) {
-				setImage(new Image("file:src/main/resources/Images/cardeath1.png", imgSize, imgSize, true, true));
-			}
-			if (carD==2) {
-				setImage(new Image("file:src/main/resources/Images/cardeath2.png", imgSize, imgSize, true, true));
-			}
-			if (carD==3) {
-				setImage(new Image("file:src/main/resources/Images/cardeath3.png", imgSize, imgSize, true, true));
-			}
-			if (carD == 4) {
-				setX(300);
-				setY(679.8+movement);
-				carDeath = false;
-				carD = 0;
-				setImage(new Image("file:src/main/resources/Images/froggerUp.png", imgSize, imgSize, true, true));
-				noMove = false;
-				if (points>50) {
-					points-=50;
-					pointTally-=50;
-					changeScore = true;
-				}
-				lives--;
-				if(lives == 0){
-					gameOverAlert();
-				}
-				else{
-					deadScoreAlert();
-				}
-			}
-
-		}
-	}
-
 
 	/**
 	 * Saves the scores of each round

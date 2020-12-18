@@ -49,11 +49,6 @@ public class HighscoreController implements Initializable {
      */
     public TableColumn<Highscore, Integer> levelColumn;
 
-    /**
-     * Button to go back to main menu
-     */
-    public Button backToMainMenu;
-
     final String fileName = "src/main/resources/Misc/Highscore.csv";
     final File file = new File(fileName);
 

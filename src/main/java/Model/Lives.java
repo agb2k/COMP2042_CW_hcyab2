@@ -10,7 +10,6 @@ public class Lives extends Actor{
     private final Image life2;
     private final Image life3;
     private final Image life4;
-    private final Image life5;
     private int count = 4;
 
     /**
@@ -52,7 +51,7 @@ public class Lives extends Actor{
         life2 = new Image("file:src/main/resources/Images/lives2.png", 0, 34, true, true);
         life3 = new Image("file:src/main/resources/Images/lives3.png", 0, 34, true, true);
         life4 = new Image("file:src/main/resources/Images/lives4.png", 0,34, true, true);
-        life5 = new Image("file:src/main/resources/Images/lives5.png", 0, 34, true, true);
+        Image life5 = new Image("file:src/main/resources/Images/lives5.png", 0, 34, true, true);
 
         setImage(life5);
         setX(x);

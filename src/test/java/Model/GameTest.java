@@ -10,13 +10,13 @@ class GameTest {
     @Test
     public void pauseSetterGetterTest(){
         Game.setPauseGame(true);
-        assertEquals(true, Game.getPauseGame());
+        assertTrue(Game.getPauseGame());
     }
 
     @Test
     public void powerUpSetterGetterTest(){
         Game.setPowerUp(true);
-        assertEquals(true, Game.isPowerUp());
+        assertTrue(Game.isPowerUp());
     }
 
 

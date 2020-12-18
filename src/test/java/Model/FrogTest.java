@@ -15,7 +15,7 @@ class FrogTest {
     @Test
     public void userStopSetterGetterTest(){
         Frog.setUserStop(true);
-        assertEquals(true, Frog.isUserStop());
+        assertTrue(Frog.isUserStop());
     }
 
     /**
@@ -24,7 +24,7 @@ class FrogTest {
     @Test
     public void changeLifeSetterGetterTest(){
         Frog.setChangeLife(true);
-        assertEquals(true, Frog.isChangeLife());
+        assertTrue(Frog.isChangeLife());
     }
 
     /**

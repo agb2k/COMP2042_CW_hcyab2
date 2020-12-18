@@ -25,10 +25,9 @@ public class PowerUp extends Actor{
 	private final Image im6;
 	private final double speed;
 	private boolean go = false;
-	private final int xCoordIndex;
 	private int yCoordIndex;
-	private final long delay;
-	@Override
+
+    @Override
 	public void act(long now) {
 		if(Game.getPauseGame() || Game.isPowerUp()){
 			setImage(null);
@@ -90,33 +89,33 @@ public class PowerUp extends Actor{
 		yCoordList.add(329);
 
 		Random rn = new Random();
-		xCoordIndex = rn.nextInt(4);
+		int xCoordIndex = rn.nextInt(4);
 		if(xCoordIndex == 0 || xCoordIndex == 2){
 			yCoordIndex = 0;
-		}else if(xCoordIndex == 1 || xCoordIndex == 3){
+		}else {
 			yCoordIndex = 1;
 		}
 
 		speed = s;
 
-		delay = ThreadLocalRandom.current().nextLong(5000, 100000);
+        long delay = ThreadLocalRandom.current().nextLong(5000, 10000);
 		setX((xCoordList.get(xCoordIndex))+55);
 		setY(yCoordList.get(yCoordIndex));
-		System.out.println("x Coord List Index: "+xCoordIndex+", Y Coord List Index: "+yCoordIndex+", Delay: "+delay);
+		System.out.println("X Coord List Index: "+ xCoordIndex +", Y Coord List Index: "+yCoordIndex+", Delay: "+ delay);
 		new Timer().schedule(new TimerTask(){
 			@Override
 			public void run(){
 				setImage(im1);
 				go = true;
 			}
-		},delay);
+		}, delay);
 		new Timer().schedule(new TimerTask(){
 			@Override
 			public void run(){
 				setImage(null);
 				go = false;
 			}
-		},(delay+20000));
+		},(delay +20000));
 
 	}
 	

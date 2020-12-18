@@ -27,21 +27,6 @@ public abstract class Actor extends ImageView{
     }
 
     /**
-     * Gets width of Actor
-     * @return width
-     */
-    public double getWidth() {
-        return this.getBoundsInLocal().getWidth();
-    }
-    /**
-     * Gets height of Actor
-     * @return height
-     */
-    public double getHeight() {
-        return this.getBoundsInLocal().getHeight();
-    }
-
-    /**
      * Checks if the actor intersects with the items of a class
      * @param cls A class containing items
      * @param <A> An array list

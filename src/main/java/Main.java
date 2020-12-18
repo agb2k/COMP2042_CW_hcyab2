@@ -12,9 +12,8 @@ import javafx.stage.StageStyle;
  */
 
 public class Main extends Application {
-	private Scene scene1;
 
-	/**
+    /**
 	 * Main method
 	 * @param args String array
 	 */
@@ -26,7 +25,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		Parent root = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
-		scene1 = new Scene(root);
+        Scene scene1 = new Scene(root);
 
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.setScene(scene1);

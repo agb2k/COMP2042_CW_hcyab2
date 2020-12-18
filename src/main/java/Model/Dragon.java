@@ -53,9 +53,9 @@ public class Dragon extends Actor {
 	 * @param h Height of dragon
 	 */
 	public Dragon(int xpos, int ypos, double s, int w, int h) {
-		min1 = new Image("file:src/main/resources/Images/DragonFlip1.png", w, h, true, true);
-		min2 = new Image("file:src/main/resources/Images/DragonFlip2.png", w, h, true, true);
-		min3 = new Image("file:src/main/resources/Images/DragonFlip3.png", w, h, true, true);
+		min1 = new Image("file:src/main/resources/Images/Dragon1.png", w, h, true, true);
+		min2 = new Image("file:src/main/resources/Images/Dragon2.png", w, h, true, true);
+		min3 = new Image("file:src/main/resources/Images/Dragon3.png", w, h, true, true);
 		setX(xpos);
 		setY(ypos);
 		speed = s;

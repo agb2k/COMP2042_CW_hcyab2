@@ -11,8 +11,7 @@ import javafx.scene.image.Image;
  */
 
 public class Digit extends Actor{
-	private final Image im1;
-	@Override
+    @Override
 	public void act(long now) {
 		// TODO Auto-generated method stub
 		
@@ -27,7 +26,7 @@ public class Digit extends Actor{
 	 */
 
 	public Digit(int n, int dim, int x, int y) {
-		im1 = new Image("file:src/main/resources/Images/"+n+".png", dim, dim, true, true);
+        Image im1 = new Image("file:src/main/resources/Images/" + n + ".png", dim, dim, true, true);
 		setImage(im1);
 		setX(x);
 		setY(y);

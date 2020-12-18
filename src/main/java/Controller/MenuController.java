@@ -32,15 +32,6 @@ public class MenuController implements Initializable {
     private Button startButton;
 
     @FXML
-    private Button infoButton;
-
-    @FXML
-    private Button highScoreButton;
-
-    @FXML
-    private Button exitButton;
-
-    @FXML
     private ChoiceBox<String> levelSelector;
 
     private MediaPlayer mediaPlayer;

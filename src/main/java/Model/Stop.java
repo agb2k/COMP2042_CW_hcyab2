@@ -10,7 +10,6 @@ import java.util.Optional;
  * Stop class for the stop button in the game
  */
 public class Stop extends Actor{
-    private final Image stop;
     @Override
     public void act(long now) {
 
@@ -24,7 +23,7 @@ public class Stop extends Actor{
      */
     public Stop(int dim, int x, int y){
 
-        stop = new Image("file:src/main/resources/Images/stop.png", dim, dim, true, true);
+        Image stop = new Image("file:src/main/resources/Images/stop.png", dim, dim, true, true);
         setImage(stop);
         setX(x);
         setY(y);
