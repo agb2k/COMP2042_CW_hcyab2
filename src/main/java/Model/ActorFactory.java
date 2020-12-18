@@ -14,61 +14,26 @@ public class ActorFactory {
      * @return Actor type required
      */
     public Actor getInstance(String str, MyStage background, int x, int y, double s){
-        if (str.equals("Digit")){
-            return new Digit(0, 30, x, y);
-        }
-        else if (str.equals("Mute")){
-            return new Mute(background, 45, x, y);
-        }
-        else if(str.equals("Pause")){
-            return new Pause(35, x, y);
-        }
-        else if(str.equals("Stop")){
-            return new Stop(32, x, y);
-        }
-        else if(str.equals("Lives")){
-            return new Lives(x, y);
-        }
-        else if(str.equals("PowerUp")){
-            return new PowerUp(40, s);
-        }
-        else if (str.equals("Skeleton")){
-            return new Skeleton(x, y, s, 70, 70);
-        }
-        else if (str.equals("Dragon")){
-            return new Dragon(x, y, s, 70, 70);
-        }
-        else if (str.equals("Minotaur")){
-            return new Minotaur(x, y, s, 70, 70);
-        }
-        else if (str.equals("BgImg")){
-            return new BackgroundImage("file:src/main/resources/Images/GameBackground.png");
-        }
-        else if (str.equals("Truck1Right")){
-            return new Vehicles("file:src/main/resources/Images/truck1"+"Right.png", x, y, s, 120, 120);
-        }
-        else if (str.equals("Truck2Right")){
-            return new Vehicles("file:src/main/resources/Images/truck2Right.png", x, y, s, 200, 200);
-        }
-        else if (str.equals("Car1Left")){
-            return new Vehicles("file:src/main/resources/Images/car1Left.png", x, y, s, 50, 50);
-        }
-        else if (str.equals("End")){
-            return new End(x, y);
-        }
-        else if (str.equals("Turtle")){
-            return new Turtle(x, y, s, 130, 130);
-        }
-        else if (str.equals("WetTurtle")){
-            return new WetTurtle(x, y, s, 130, 130);
-        }
-        else if (str.equals("Log3")){
-            return new Log("file:src/main/resources/Images/log3.png", 150, x, y, s);
-        }
-        else if (str.equals("Logs")){
-            return new Log("file:src/main/resources/Images/logs.png", 300, x, y, s);
-        }else {
-            return null;
-        }
+        return switch (str) {
+            case "Digit" -> new Digit(0, 30, x, y);
+            case "Mute" -> new Mute(background, 45, x, y);
+            case "Pause" -> new Pause(35, x, y);
+            case "Stop" -> new Stop(32, x, y);
+            case "Lives" -> new Lives(x, y);
+            case "PowerUp" -> new PowerUp(40, s);
+            case "Skeleton" -> new Skeleton(x, y, s, 70, 70);
+            case "Dragon" -> new Dragon(x, y, s, 70, 70);
+            case "Minotaur" -> new Minotaur(x, y, s, 70, 70);
+            case "BgImg" -> new BackgroundImage("file:src/main/resources/Images/GameBackground.png");
+            case "Truck1Right" -> new Vehicles("file:src/main/resources/Images/truck1" + "Right.png", x, y, s, 120, 120);
+            case "Truck2Right" -> new Vehicles("file:src/main/resources/Images/truck2Right.png", x, y, s, 200, 200);
+            case "Car1Left" -> new Vehicles("file:src/main/resources/Images/car1Left.png", x, y, s, 50, 50);
+            case "End" -> new End(x, y);
+            case "Turtle" -> new Turtle(x, y, s, 130, 130);
+            case "WetTurtle" -> new WetTurtle(x, y, s, 130, 130);
+            case "Log3" -> new Log("file:src/main/resources/Images/log3.png", 150, x, y, s);
+            case "Logs" -> new Log("file:src/main/resources/Images/logs.png", 300, x, y, s);
+            default -> null;
+        };
     }
 }
