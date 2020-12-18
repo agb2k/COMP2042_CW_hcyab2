@@ -21,6 +21,11 @@ public class Main extends Application {
 		launch(args);
 	}
 
+	/**
+	 * Starts the primary stage
+	 * @param primaryStage Menu stage
+	 * @throws Exception Errors
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 

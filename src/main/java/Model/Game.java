@@ -1,5 +1,9 @@
 package Model;
 
+import Model.Actor.Digit;
+import Model.Actor.Frog;
+import Model.Util.AddObjects;
+import Model.World.MyStage;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;

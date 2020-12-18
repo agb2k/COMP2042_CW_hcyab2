@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.RoundScore;
+import Model.Util.RoundScore;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

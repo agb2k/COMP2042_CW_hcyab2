@@ -1,5 +1,6 @@
 package Model;
 
+import Model.Util.AddObjects;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

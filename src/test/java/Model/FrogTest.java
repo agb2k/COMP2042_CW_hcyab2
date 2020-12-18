@@ -1,6 +1,8 @@
 package Model;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import Model.Actor.Frog;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

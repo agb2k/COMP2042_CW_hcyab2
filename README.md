@@ -6,12 +6,16 @@ Student ID: 20205163
 
 OWA: hcyab2
 
+## Running the Game:
+- This implementation of Frogger has been tested on 2 Windows devices on IntelliJ IDEA  
+- To run the game import it as a maven project and select javafx:run on the maven tab
 
 ## Key Changes Made for Maintenance and Extension
 
 - Configured the file for Github to regularly push updated code to the respective repository for easier maintenance
   - On request, users can be added as a collaborator to view the repository
 - Added JavaDocs for easier understanding
+- The classes have been repackaged to make it easier to understand
 - Broke up classes into separate classes to give each class unique functionality
     - Created the Game class which focuses on initializing the game itself from the Main class
     - Created the AddObjects class which focuses on adding objects to the game from the Main class
@@ -45,8 +49,15 @@ OWA: hcyab2
 
 
 - Main Menu:
+
 ![Main Menu](img_3.png)
 
 
 - Level 10 of the Game:
+
 ![Level 10](img_2.png)
+  
+
+- Class Diagram:
+
+![img.png](img.png)

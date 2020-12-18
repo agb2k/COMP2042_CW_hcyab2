@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="FroggerTrial" target="1.15" />
+      <module name="FroggerTrial" target="14" />
     </bytecodeTargetLevel>
   </component>
 </project>
