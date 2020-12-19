@@ -151,7 +151,7 @@ public class AddObjects {
             if(level <= 3){
                 background.add(af.getInstance("Car1Left", background, 500, 490, -5*speedFactor));
             }
-            else if(level <= 8 && level >= 3){
+            else {
                 background.add(af.getInstance("Car1Left", background, 250, 597, -1*speedFactor));
                 background.add(af.getInstance("Car1Left", background, 550, 597, -1*speedFactor));
             }

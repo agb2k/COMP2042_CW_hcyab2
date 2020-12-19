@@ -26,7 +26,6 @@ public class PowerUp extends Actor{
 	private final Image im6;
 	private final double speed;
 	private boolean go = false;
-	private int yCoordIndex;
 
     @Override
 	public void act(long now) {
@@ -91,7 +90,8 @@ public class PowerUp extends Actor{
 
 		Random rn = new Random();
 		int xCoordIndex = rn.nextInt(4);
-		if(xCoordIndex == 0 || xCoordIndex == 2){
+        int yCoordIndex;
+        if(xCoordIndex == 0 || xCoordIndex == 2){
 			yCoordIndex = 0;
 		}else {
 			yCoordIndex = 1;
@@ -102,7 +102,7 @@ public class PowerUp extends Actor{
         long delay = ThreadLocalRandom.current().nextLong(5000, 100000);
 		setX((xCoordList.get(xCoordIndex))+55);
 		setY(yCoordList.get(yCoordIndex));
-		System.out.println("X Coord List Index: "+ xCoordIndex +", Y Coord List Index: "+yCoordIndex+", Delay: "+ delay);
+		System.out.println("X Coord List Index: "+ xCoordIndex +", Y Coord List Index: "+ yCoordIndex +", Delay: "+ delay);
 		new Timer().schedule(new TimerTask(){
 			@Override
 			public void run(){

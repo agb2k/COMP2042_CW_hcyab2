@@ -20,7 +20,8 @@ public class WetTurtle extends Actor{
 	 * The actions of the wet turtle required for the game
 	 * @param now Time of the current frame
 	 */
-	@Override
+	@SuppressWarnings("StatementWithEmptyBody")
+    @Override
 	public void act(long now) {
 		if(Game.getPauseGame() || Game.isPowerUp()){
 

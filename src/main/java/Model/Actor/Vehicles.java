@@ -14,7 +14,8 @@ public class Vehicles extends Actor {
 	 * The actions of the obstacles(vehicles) required for the game
 	 * @param now Time of the current frame
 	 */
-	@Override
+	@SuppressWarnings("StatementWithEmptyBody")
+    @Override
 	public void act(long now) {
 		if(Game.getPauseGame() || Game.isPowerUp()){
 

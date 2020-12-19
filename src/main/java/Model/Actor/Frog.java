@@ -1,12 +1,12 @@
 package Model.Actor;
 
+import Controller.FrogController;
 import Model.Util.AddObjects;
 import Model.Game;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -15,7 +15,6 @@ import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,18 +24,11 @@ import java.util.TimerTask;
  */
 
 
+//Observer
 public class Frog extends Actor{
-	/**
-	 * Images of the frog when travelling to its respective direction
-	 */
-	private final Image imgW1;
-	private final Image imgA1;
-	private final Image imgS1;
-	private final Image imgD1;
-	private final Image imgW2;
-	private final Image imgA2;
-	private final Image imgS2;
-	private final Image imgD2;
+
+	private final FrogController frogController = new FrogController(this);
+
 	/**
 	 * The points of the frog
 	 */
@@ -49,10 +41,7 @@ public class Frog extends Actor{
 	 * Used to check for end game
 	 */
 	private int end = 0;
-	/**
-	 * Boolean used to decide whether the frog has completed an even number of steps
-	 */
-	private boolean second = false;
+
 	/**
 	 * Boolean to see if the frog is moving
 	 */
@@ -63,10 +52,6 @@ public class Frog extends Actor{
 	 */
 	private final double movement = 13.3333333 * 2;
 
-	/**
-	 * Number of units the frog moves forward on the X-axis
-	 */
-	private final double movementX = 10.666666 * 2;
 
 	/**
 	 * Image size
@@ -108,11 +93,6 @@ public class Frog extends Actor{
 	private String text = "";
 
 	/**
-	 * Boolean to check if user stops game
-	 */
-	private static boolean userStop = false;
-
-	/**
 	 * Boolean to see if life changed
 	 */
 	private static boolean changeLife = false;
@@ -122,103 +102,14 @@ public class Frog extends Actor{
 	private boolean first = true;
 
 	/**
-	 * <pre>
-	 * Initializes the frog character to move and switch to the respective image when particular buttons are clicked
+	 * Initializes the frog character to frogController and switch to the respective image when particular buttons are clicked
 	 * Also, increases the score whenever moved upwards
-	 * </pre>
 	 */
 	public Frog() {
 		setImage(new Image("file:src/main/resources/Images/froggerUp.png", imgSize, imgSize, true, true));
 		setX(300);
 		setY(679.8 + movement);
-		imgW1 = new Image("file:src/main/resources/Images/froggerUp.png", imgSize, imgSize, true, true);
-		imgA1 = new Image("file:src/main/resources/Images/froggerLeft.png", imgSize, imgSize, true, true);
-		imgS1 = new Image("file:src/main/resources/Images/froggerDown.png", imgSize, imgSize, true, true);
-		imgD1 = new Image("file:src/main/resources/Images/froggerRight.png", imgSize, imgSize, true, true);
-		imgW2 = new Image("file:src/main/resources/Images/froggerUpJump.png", imgSize, imgSize, true, true);
-		imgA2 = new Image("file:src/main/resources/Images/froggerLeftJump.png", imgSize, imgSize, true, true);
-		imgS2 = new Image("file:src/main/resources/Images/froggerDownJump.png", imgSize, imgSize, true, true);
-		imgD2 = new Image("file:src/main/resources/Images/froggerRightJump.png", imgSize, imgSize, true, true);
-		buttonClickCheck();
-	}
-
-	/**
-	 * Checks if a button has been clicked and performs the corresponding actions
-	 */
-	private void buttonClickCheck() {
-		setOnKeyPressed(event -> {
-			if(Game.getPauseGame() || noMove){
-				//Do Nothing
-			}
-			else{
-				if (second) {
-					if (event.getCode() == KeyCode.W) {
-						move(0, -movement);
-						changeScore = false;
-						setImage(imgW1);
-						second = false;
-					} else if (event.getCode() == KeyCode.A) {
-						move(-movementX, 0);
-						setImage(imgA1);
-						second = false;
-					} else if (event.getCode() == KeyCode.S) {
-						move(0, movement);
-						setImage(imgS1);
-						second = false;
-					} else if (event.getCode() == KeyCode.D) {
-						move(movementX, 0);
-						setImage(imgD1);
-						second = false;
-					}
-				} else if (event.getCode() == KeyCode.W) {
-					move(0, -movement);
-					setImage(imgW2);
-					second = true;
-				} else if (event.getCode() == KeyCode.A) {
-					move(-movementX, 0);
-					setImage(imgA2);
-					second = true;
-				} else if (event.getCode() == KeyCode.S) {
-					move(0, movement);
-					setImage(imgS2);
-					second = true;
-				} else if (event.getCode() == KeyCode.D) {
-					move(movementX, 0);
-					setImage(imgD2);
-					second = true;
-				}
-			}
-		});
-		setOnKeyReleased(event -> {
-			if(Game.getPauseGame() || noMove){
-				//Do nothing
-			}
-			else{
-				if (event.getCode() == KeyCode.W) {
-					if (getY() < w) {
-						changeScore = true;
-						w = getY();
-						points += 10;
-						pointTally += 10;
-					}
-					move(0, -movement);
-					setImage(imgW1);
-					second = false;
-				} else if (event.getCode() == KeyCode.A) {
-					move(-movementX, 0);
-					setImage(imgA1);
-					second = false;
-				} else if (event.getCode() == KeyCode.S) {
-					move(0, movement);
-					setImage(imgS1);
-					second = false;
-				} else if (event.getCode() == KeyCode.D) {
-					move(movementX, 0);
-					setImage(imgD1);
-					second = false;
-				}
-			}
-		});
+		frogController.buttonClickCheck();
 	}
 
 	/**
@@ -265,10 +156,6 @@ public class Frog extends Actor{
 			},5000);
 		}
 
-		/**
-		 * Array list of end points
-		 */
-		ArrayList<End> inter = new ArrayList<>();
 		if(Game.isPowerUp()){
 			if ((getIntersectingObjects(Log.class).size() >= 1 || getIntersectingObjects(Turtle.class).size() >= 1) && !noMove) {
 				move(0,0);
@@ -366,7 +253,7 @@ public class Frog extends Actor{
 			String str = null;
 			if(waterDeath){
 				str = "water";
-			}else if(carDeath){
+			}else {
 				str = "car";
 			}
 
@@ -497,6 +384,14 @@ public class Frog extends Actor{
 	}
 
 	/**
+	 * Setter for points
+	 * @param points point value
+	 */
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	/**
 	 * Gets the frogs points
 	 * @return Points of frog
 	 */
@@ -524,13 +419,6 @@ public class Frog extends Actor{
 		return lives;
 	}
 
-	/**
-	 * Setter for userStop
-	 * @param userStop New boolean value to assign to userStop
-	 */
-	public static void setUserStop(boolean userStop) {
-		Frog.userStop = userStop;
-	}
 
 	/**
 	 * Getter for userStop
@@ -547,4 +435,61 @@ public class Frog extends Actor{
 	public static void setChangeLife(boolean changeLife) {
 		Frog.changeLife = changeLife;
 	}
+
+	/**
+	 * Getter for pointTally
+	 * @return pointTally int value
+	 */
+	public int getPointTally() {
+		return pointTally;
+	}
+
+	/**
+	 * Setter for pointTally
+	 * @param pointTally int value to set pointTally as
+	 */
+	public void setPointTally(int pointTally) {
+		this.pointTally = pointTally;
+	}
+
+	/**
+	 * Getter for w
+	 * @return w double value
+	 */
+	public double getW() {
+		return w;
+	}
+
+	/**
+	 * Setter for w
+	 * @param w The value to set w as
+	 */
+	public void setW(double w) {
+		this.w = w;
+	}
+
+	/**
+	 * Getter for noMove
+	 * @return noMove double value
+	 */
+	public boolean isNoMove() {
+		return noMove;
+	}
+
+	/**
+	 * Getter for movement
+	 * @return movement value
+	 */
+	public double getMovement() {
+		return movement;
+	}
+
+	/**
+	 * Setter for changeScore value
+	 * @param changeScore Boolean value of changeScore required
+	 */
+	public void setChangeScore(boolean changeScore) {
+		this.changeScore = changeScore;
+	}
+
 }

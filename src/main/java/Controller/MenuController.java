@@ -98,6 +98,7 @@ public class MenuController implements Initializable {
     /**
      * Actions taking place when start button is clicked
      */
+    @SuppressWarnings("StatementWithEmptyBody")
     public void startButtonClicked(){
         mediaPlayer.stop();
         String username = null;

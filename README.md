@@ -18,7 +18,7 @@ OWA: hcyab2
 - Add the VM Arguments to Main by editing configurations: "--module-path **(JavaFX Library Path)** --add-modules=ALL-MODULE-PATH"
   
 
-- Alternatively, run the game import it as a maven project and select javafx:run on the maven tab in IntelliJ
+- Alternatively, import the project as a maven project and select javafx:run on the maven tab on the right side of in IntelliJ
 
 ## Key Changes Made for Maintenance and Extension
 
@@ -27,9 +27,10 @@ OWA: hcyab2
   - On request, users can be added as a collaborator to view the repository
 - Added JavaDocs for easier understanding
 - The classes have been repackaged to make it easier to understand
-- Broke up classes into separate classes to give each class unique functionality
+- Broke up classes into separate classes to give each class unique functionality and follow the single responsibility principle
     - Created the Game class which focuses on initializing the game itself from the Main class
     - Created the AddObjects class which focuses on adding objects to the game from the Main class
+    - Created the FrogController class which focuses on the controls involved in moving the frog and placed it in the controller package
 - Renamed classes for easier understanding
   - Changed the Animal class to Frog
   - Changed the Obstacle class to Vehicles

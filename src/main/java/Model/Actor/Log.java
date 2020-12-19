@@ -16,7 +16,8 @@ public class Log extends Actor {
 	 * Gives the object an action to do
 	 * @param now Time of the current frame
 	 */
-	@Override
+	@SuppressWarnings("StatementWithEmptyBody")
+    @Override
 	public void act(long now) {
 		if(Game.getPauseGame() || Game.isPowerUp()){
 			//Do nothing

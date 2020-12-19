@@ -17,6 +17,7 @@ public class Dragon extends Actor {
 	 * The actions of the dragons required for the game
 	 * @param now Time of the current frame
 	 */
+	@SuppressWarnings("StatementWithEmptyBody")
 	@Override
 	public void act(long now) {
 		if(Game.getPauseGame() || Game.isPowerUp()){
