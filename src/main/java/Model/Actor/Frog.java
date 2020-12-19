@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-//class was previously known as Actor
 /**
  * This class inherits all the properties of the actor class
  * This class is involved in the processes the main character(frog) goes through i.e. movements, death etc.
@@ -282,7 +281,6 @@ public class Frog extends Actor{
 				}
 			}
 			else if (getIntersectingObjects(End.class).size() >= 1) {
-				inter = (ArrayList<End>) getIntersectingObjects(End.class);
 				if (getIntersectingObjects(End.class).get(0).isActivated()) {
 					end--;
 					points-=50;
@@ -320,7 +318,6 @@ public class Frog extends Actor{
 				}
 			}
 			else if (getIntersectingObjects(End.class).size() >= 1) {
-				inter = (ArrayList<End>) getIntersectingObjects(End.class);
 				if (getIntersectingObjects(End.class).get(0).isActivated()) {
 					end--;
 					points-=50;
@@ -517,9 +514,7 @@ public class Frog extends Actor{
 			return true;
 		}
 		return false;
-		
 	}
-
 
 	/**
 	 * Getter for lives
@@ -527,14 +522,6 @@ public class Frog extends Actor{
 	 */
 	public int getLives() {
 		return lives;
-	}
-
-	/**
-	 * Getter for userStop
-	 * @return userStop boolean value
-	 */
-	public static boolean isUserStop() {
-		return userStop;
 	}
 
 	/**

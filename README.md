@@ -7,13 +7,24 @@ Student ID: 20205163
 OWA: hcyab2
 
 ## Running the Game:
-- This implementation of Frogger has been tested on 2 Windows devices on IntelliJ IDEA  
-- To run the game import it as a maven project and select javafx:run on the maven tab
+- This implementation of Frogger has been tested on 2 Windows devices on IntelliJ IDEA
+  
+
+- To run the game open up the project on IntelliJ IDEA
+- Download the JavaFX library and place it on a folder
+- Add the JavaFX library to Global Libraries (File -> Project Structure -> Global Libraries)
+- Click the '+' button, select Java and direct to the lib folder of the JavFX library
+- Add to FroggerTrial module and click apply
+- Add the VM Arguments to Main by editing configurations: "--module-path **(JavaFX Library Path)** --add-modules=ALL-MODULE-PATH"
+  
+
+- Alternatively, run the game import it as a maven project and select javafx:run on the maven tab in IntelliJ
 
 ## Key Changes Made for Maintenance and Extension
 
 - Configured the file for Github to regularly push updated code to the respective repository for easier maintenance
-  - Used .gitignore file to avoid clutter in the repository  - On request, users can be added as a collaborator to view the repository
+  - Used .gitignore file to avoid clutter in the repository  
+  - On request, users can be added as a collaborator to view the repository
 - Added JavaDocs for easier understanding
 - The classes have been repackaged to make it easier to understand
 - Broke up classes into separate classes to give each class unique functionality
@@ -66,18 +77,8 @@ OWA: hcyab2
 - Github:
 
 ![img_1.png](img_1.png)
-
-
 ![img_4.png](img_4.png)
-
-
 ![img_5.png](img_5.png)
-
-
 ![img_6.png](img_6.png)
-
-
 ![img_7.png](img_7.png)
-
-
 ![img_8.png](img_8.png)

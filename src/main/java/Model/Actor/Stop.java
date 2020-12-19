@@ -1,5 +1,6 @@
 package Model.Actor;
 
+import Model.Game;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
@@ -36,7 +37,7 @@ public class Stop extends Actor{
                     conf.setContentText("Are you sure?");
                     Optional <ButtonType> action = conf.showAndWait();
                     if(action.get() == ButtonType.OK){
-                        Frog.setUserStop(true);
+                        Game.setUserStop(true);
                     }
                 }
         );

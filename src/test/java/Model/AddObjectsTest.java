@@ -10,7 +10,7 @@ class AddObjectsTest {
      * Used to test if the speedFactor getter and setter functions properly
      */
     @Test
-    public void userStopSetterGetterTest(){
+    public void speedFactorSetterGetterTest(){
         AddObjects.setSpeedFactor(5);
         assertEquals(5, AddObjects.getSpeedFactor());
     }

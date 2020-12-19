@@ -26,6 +26,7 @@ public class Game{
     private final Frog frog;
     private static boolean pauseGame = false;
     private static boolean powerUp = false;
+    private static boolean userStop = false;
 
 
 
@@ -117,7 +118,7 @@ public class Game{
 
                     finalStop(stage);
                 }
-                if (Frog.isUserStop()){
+                if (userStop){
 
                     System.out.print("USER STOPPED:");
                     background.stopMusic();
@@ -129,7 +130,7 @@ public class Game{
 
                     finalStop(stage);
 
-                    Frog.setUserStop(false);
+                    userStop = false;
 
                 }
             }
@@ -257,5 +258,21 @@ public class Game{
      */
     public static void setPowerUp(boolean powerUp) {
         Game.powerUp = powerUp;
+    }
+
+    /**
+     * Getter for userStop boolean
+     * @return userStop boolean value
+     */
+    public static boolean isUserStop() {
+        return userStop;
+    }
+
+    /**
+     * Setter for userStop boolean
+     * @param userStop Boolean value for userStop
+     */
+    public static void setUserStop(boolean userStop) {
+        Game.userStop = userStop;
     }
 }

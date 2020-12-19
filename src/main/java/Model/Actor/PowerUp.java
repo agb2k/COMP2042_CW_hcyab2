@@ -79,7 +79,7 @@ public class PowerUp extends Actor{
 		im5 = new Image("file:src/main/resources/Images/Frame 5.png", dim, dim, true, true);
 		im6 = new Image("file:src/main/resources/Images/Frame 6.png", dim, dim, true, true);
 
-		ArrayList <Integer> xCoordList = new ArrayList();
+		ArrayList<Integer> xCoordList = new ArrayList();
 		xCoordList.add(0);
 		xCoordList.add(440);
 		xCoordList.add(50);
@@ -99,7 +99,7 @@ public class PowerUp extends Actor{
 
 		speed = s;
 
-        long delay = ThreadLocalRandom.current().nextLong(5000, 10000);
+        long delay = ThreadLocalRandom.current().nextLong(5000, 100000);
 		setX((xCoordList.get(xCoordIndex))+55);
 		setY(yCoordList.get(yCoordIndex));
 		System.out.println("X Coord List Index: "+ xCoordIndex +", Y Coord List Index: "+yCoordIndex+", Delay: "+ delay);
