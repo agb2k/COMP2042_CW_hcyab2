@@ -2,8 +2,6 @@
 
 Name: Abhinav George Basil
 
-Student ID: 20205163
-
 OWA: hcyab2
 
 ## Running the Game:
