@@ -1,4 +1,4 @@
-# COMP2042_CW_hcyab2
+# Frogger 2.0 (Originally COMP2042_CW_hcyab2)
 
 Name: Abhinav George Basil
 
