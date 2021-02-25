@@ -24,7 +24,7 @@ OWA: hcyab2
   - Used .gitignore file to avoid clutter in the repository  
   - On request, users can be added as a collaborator to view the repository
 - Added JavaDocs for easier understanding and used Github pages to host the Javadocs online for easy viewing
-  - Frogger Javadocs link: https://agb2k.github.io/COMP2042_CW_hcyab2/
+  - Frogger Javadocs link: https://agb2k.github.io/Frogger-2.0/
 - The classes have been repackaged to make it easier to understand
 - Broke up classes into separate classes to give each class unique functionality and follow the single responsibility principle
     - Created the Game class which focuses on initializing the game itself from the Main class
